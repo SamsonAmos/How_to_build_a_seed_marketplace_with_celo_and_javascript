@@ -1,16 +1,16 @@
 ---
-title: How to Build a seed Marketplace dapp Using Solidity and Javascript on the Celo ecosystem
-description: Learn how to build a seed marketplace on the blockchain using solidity and javascript 
-authors:
-- name: Samson Amos 
-  title: Web2 and Web3 Developer, 
-  github_url: https://github.com/SamsonAmos
-tags: [Solidity, Celo, Javascript]
+Title: How to Build a seed Marketplace dapp Using Celo, Solidity and Javascript.
+Description: Learn how to build a seed marketplace on the blockchain using Celo, Solidity and Javascript 
+Author:
+- Name: Samson Amos 
+  Title: Web2 and Web3 Developer, 
+  Github URL: https://github.com/SamsonAmos
+Tags: [Celo, Solidity, Javascript]
 hide_table_of_contents: true
-slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Solidity-Celo-and-Javascript
+Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Javascript
 ---
 
-# How to Build a Seed Marketplace dapp using Solidity, Celo and Javascript
+# How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
 
 ## Introduction:
 A blockchain or cryptographic network is a broad term used to describe a database maintained by a distributed set of computers that do not share a trust relationship or common ownership. This arrangement is referred to as decentralized. The content of a blockchain's database, or ledger, is authenticated using cryptographic techniques, preventing its contents from being added to, edited or removed except according to a protocol operated by the network as a whole.
@@ -21,27 +21,27 @@ One of the main features of Celo is its use of proof-of-stake (PoS) consensus, w
 Ethereum applications are built using smart contracts. Smart contracts are programs written in languages like Solidity that produce bytecode for the Ethereum Virtual Machine or EVM, a runtime environment. Programs encoded in smart contracts receive messages and manipulate the blockchain ledger and are termed on-chain.
 
 ## Prerequisites:
-This tutorials exposes you to how building a simple fullstack dapp (decentralized application) using react. You will need to have familiarity of the following:
+This tutorials exposes you on how to build a simple fullstack dapp (decentralized application) on the Celo network using Solidity (SmartContract) and Javascript (Frontend). In order for us to move futher, you need to be familiar with the following:
 
-- Have access to a desktop computer with internet and a chrome web browser.
-- Have basic knowledge of HTML and Javascript.
-- Familiarity with the command line
 - Basic understanding of blockchain concepts. You can click **[here](https://dacade.org/communities/blockchain/courses/intro-to-blockchain) to learn.
-- Have some knowledge on solidity and its concepts. you can click **[here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
+- Basic understanding of what a smart contract is.
+- Basic knowledge on solidity and its concepts. you can click **[here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
+- Basic knowledge of HTML and Javascript.
+- Familiarity with the command line.
 
 ## Requirements: 
+- Access to a computer with internet connection and a chrome web browser.
 - **[NodeJS](https://nodejs.org/en/download)** from V12.or higher
 - A code editor or text editor. **[VSCode](https://code.visualstudio.com/download)** is recommended
 - A terminal. **[Git Bash](https://git-scm.com/downloads)** is recommended
-- An Internet Browser and good internet connection
 - **[Remix](https://remix.ethereum.org)**
 - **[Celo Extension Wallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en)**.
 
 ## Let's Begin
 
-Below is a gif image of what we are about to build on the celo ecosystem.
+Below is a gif image of what we are going to build.
 
-![image](images/1.png)
+![image](images/image 1.png)
 
 ## Smart Contract Development
 
