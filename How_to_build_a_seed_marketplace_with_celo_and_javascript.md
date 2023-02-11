@@ -54,20 +54,20 @@ You can learn how the remix works by following the steps below:
   - Click on Remix Basics.
   - Start the tutorial and finish all lessons of Remix Basics.
 
-Here is a preview of the Remix IDE:
+Here is a preview on how to do it.
 ![image](https://cdn-celo-101-dacade.netlify.app/celo_2_1_remix_basics.gif)
 
-Considering you have understood how the Remix IDE works, let's create a Soliidity file: called seedmarketplace.sol
+Considering you have understood how the Remix IDE works, let's create a Soliidity file: called AgroCelo.sol
 
   - Go to remix.ethereum.org, 
   - Create a new file, 
-  - Name it seedmarketplace.sol. You give it any name you want but lets stick to seedmarketplace.sol. 
+  - Name it AgroCelo.sol. You give it any name you want but lets stick to AgroCelo.sol. 
   - Open that file. The .sol extension indicates that it is a solididty file.
 
 
-On the first line of your seedmarketplace.sol lets include a statement that specifies the license under which the code is being released.
+On the first line of your AgroCelo.sol lets include a statement that specifies the license under which the code is being released.
 
-```js
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
 ```
