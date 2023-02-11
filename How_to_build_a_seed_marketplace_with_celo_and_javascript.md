@@ -457,13 +457,16 @@ function storePurchasedSeeds(address _owner,
 To deploy the contract, we would need:
 1. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from Google Chrome store.
 
+
 2. Create a wallet and ensure you store your key phrase in a very safe place when creating your wallet to avoid permanently losing your funds below is a break down on how to create a wallet:
 
 ![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_create_wallet.gif)
 
+
 3. Get the Celo token for the alfajores testnet [here](https://celo.org/developers/faucet) : below is a breakdown on how to do it.
 
 ![image](images/celo_get_token_from_faucet.gif)
+
 
 4. Install the Celo remix plugin and deploy your contract. Below is the breakdown. 
 
@@ -620,11 +623,10 @@ Up next we will be creating our hero where which is a background that tells the 
 <br />
 ``` 
 
-The hero is divided into two columns by wrapping it with a div which has class of row. using is contained in a div with various bootstrap style which it has a h4 tag which explains what the app does and a button which will later pop up a modal where you will fill a form to list a seed on the smart contract. The second column contains and image tag where the source of the image is gotten from the url.
+The hero is divided into two columns by wrapping it with a div which has class of row. The first column contains  a div with various bootstrap style which has a h4 tag that explains what the app does and a button which will  pop up a modal where users can fill a form and interact with our smart contract to list a seed on the Celo blockchain. The second column contains and image tag where the source of the image is gotten from the url.
 
 
-
-Up next we will also be creating toggle buttons inorder to switch between the general seed listed on the market and the ones you already bought
+Up next we will be creating toggle buttons that will enable the users toggle the view between the general seed listed on the market and the ones they already bought.
 
 ```html
 <!-- divs showing buttons used in switching views -->
@@ -641,7 +643,7 @@ Up next we will also be creating toggle buttons inorder to switch between the ge
 </div>
 <!-- end of div -->
 ```
-in our code we used boostrap nav pills to create two buttons one with id set to "productTab" and the other set to "purchasedTab". The reason for the id's is so that we can use or target the buttons in our javascript code.
+in our code, we used boostrap nav pills to create two buttons one with id set to "productTab" and the other set to "purchasedTab". The reason for the id's is so that we can use or target the buttons in our javascript code, to enable us add and remove styles on the web page.
 
 Up next we will be creating a div that will show all seeds listed on the smartcontract:
 
@@ -666,9 +668,9 @@ Up next we will be creating a div that will show all seeds listed on the smartco
       </div>
 <!-- End of container -->
 ``` 
-The main tag contains two id's one set to "marketplace" which will be used later on in our javascript code to target and render the seeds from the smart contract, while the other set to "purchasedProduct" which we will also use later in our javascript code to render seeds that is being purchased by us.
+The main tag contains two id's one set to "marketplace" which will be used later on in our javascript code to target and render the seeds listed on the blockchain. While the other is set to "purchasedProduct" which we would also use later in our javascript code to render seeds that is being purchased by the user.
 
-up next is creating our first modal. This modal is used to show the full details of a particular seed. below is the code.
+up next is creating our first modal. This modal is used to show the full details of a particular seed when a the user clicks the `view More Details` button of a listed seed. The `modal-body` has an id of `modalHeader` the id is what we will use to render the template that will be coming from our Javascript file. Below is the code:
 
 ```html
 <!-- start of modal that shows seed details -->
@@ -798,9 +800,10 @@ Up next is another modal which will be use to add or list a seed to the celo blo
 
 ```
 
-Inside the modals are html forms which will be used to list a seed on the celo network.
+Inside the modals are html forms, a close and a Submit button. The form will be use to fill the neccesary informations needed to list a seed on the Celo blockchain, while the Submit button will interact with our smart contract to submit the details of the form. The close button closes the modal.
 
-Finally, add the bootstrap JS library and a library called blockies, that you are going to use to visualise blockchain addresses and close the body and html tag.
+Finally, we are going to add a bootstrap JS library and a library called blockies, that we are going to use to visualise blockchain addresses. Then we close the body and html tag.
+
 ```html
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
