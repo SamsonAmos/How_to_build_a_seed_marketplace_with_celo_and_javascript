@@ -55,7 +55,7 @@ You can learn how the remix works by following the steps below:
   - Start the tutorial and finish all lessons of Remix Basics.
 
 Here is a preview on how to do it.
-![image](https://cdn-celo-101-dacade.netlify.app/celo_2_1_remix_basics.gif)
+![gif](https://cdn-celo-101-dacade.netlify.app/celo_2_1_remix_basics.gif)
 
 Considering you have understood how the Remix IDE works, let's build our smart contract by create a Soliidity file: called AgroCelo.sol
 
@@ -183,7 +183,7 @@ To create a mapping, you use the keyword `mapping` and assign a key type to a va
 
 The second mapping stores the `PurchasedSeedInfo` model which is all seeds purchased by a particular buyer. This time the mapping method uses the address of the buyer as it's key to store all seed purchased by that particular buyer in an array.
 
-In the next section, you will define a function to add the seed to the smart contract.
+In the next section, you will define a function to add the seed to the smart contract called `listSeed`.
 
 ```solidity
 // Function used to list a seed.
@@ -209,11 +209,15 @@ In the next section, you will define a function to add the seed to the smart con
      listedSeedLength++;
 }
 ```
-In the code above we create a function called listSeed which includes parameters names and its type. We use the underscore in the name of the parameters to differentiate it from the struct value we are setting.  The function has its  visibilty type set to public.
+The function includes parameters names and its type. We use the underscore in the name of the parameters to differentiate it from the struct value we are setting.  The function has its visibilty type set to public.
 
-Next we use the `require` function to ensure that all fields that the user will fill when listing a seed in the fronted should not be empty. 
+Next we use the `require` method to ensure that all fields that the user will fill when listing a seed in the fronted should not be empty. 
 
-Next, we associate the key listedSeedLength with a new SeedInformaition structure in the listedSeeds mapping.
+The require method which takes two parameters: 
+  - The condition 
+  - The error message 
+
+Next, we associate the key `listedSeedLength` with a new `SeedInformaition` structure in the `listedSeeds` mapping.
 
 The first field of the struct is the address of the owner who can receive payments. The msg.sender function returns the address of the entity that initiated the call and is capable of receiving payments. This address will be stored as the owner's address.
 You also need to assign values to the other variables using the provided parameters.
@@ -221,9 +225,10 @@ You also need to assign values to the other variables using the provided paramet
 After that, we are going to increment the listedSeedLength by 1 so as to avoid listing a seed with the same id. 
 
 
-Up next we create a function that reads a listed seed when the index or id of that seed is passed.
+Up next we are going to create a function that will allow us read a listed seed when a valid index or id of that seed is passed as a parameter.
 
 ```solidity
+// Function used to fetch a lised seed by its id.
     function getListedSeedById(uint _index) public view returns (
         address,
         string memory,
@@ -247,16 +252,15 @@ Up next we create a function that reads a listed seed when the index or id of th
     }
 ```
 
-This function will carry a parameter of _index to be able to get a particular seed alias. You also need to specify the variables you will return with the function. 
-In this case, it would be a tuple corresponding to the variables declared in the struct. 
+This function will carry a parameter of _index to be able to get a particular seed alias. You also need to specify the variables you will return with the function. In this case, it would be a tuple corresponding to the variables declared in the struct. 
 The function will return the address of the owner, seedName, seedImgUrl, seedDetails, seedLocation, price and email address of the owner. 
 
 
+Up next, we are going to create a function called `buySeed` to enable users purchase a seed on the smart contract. 
 
-next, we create a function to enable users  purchase a  seed on the smart contract. 
-
-```js
+```solidity
     function buySeed(uint _index, address _owner, string memory _seedName, string memory _seedImgUrl,  uint _price, string memory _email) public payable  {
+        require(_price > 0, "Price should be greater than 0");
         require(listedSeeds[_index].owner != msg.sender, "you are already an owner of this seed");
         require(
           IERC20Token(cUsdTokenAddress).transferFrom(
@@ -273,49 +277,45 @@ next, we create a function to enable users  purchase a  seed on the smart contra
 
 The "buySeed" function, which is public and payable, takes the _index, _owner, _seedName, seedImgUrl, _price, _emaiil and their respective types as parameter.
 
-Th next line of code is the require method which takes two parameters: 
-  - The condition 
-  - The error message 
-  
-It works like the if statement in javascript. In our parameters, it checks if the buyer of that seed is not the seller. If it is false,  it trows an error saying "you are already an owner of this seed".
+It will have three require methods. 
 
-The second require method is to ensure that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored address to call the transferFrom method to transfer cUSD.
+The first require method checks if the price that is being passed is greater than 0. If the condition is true it will move to the next require method. If the condition is false, it will throw an error message: `"Price should be greater than 0"`.
+
+The second require method ensures that the buyer of that seed should not be the same as the seller. If it is false, it trows an error saying "you are already an owner of this seed".
+
+The third require method is to ensure that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored address to call the transferFrom method to transfer cUSD.
 
 The first parameter is the address of the sender, accessed using the msg.sender method, the second parameter is the recipient of the transaction, which is the owner of the car at the given index, and the final parameter is the price of the seed at the given index. 
 
-If the transaction is successful, it calls the storePurchasedSeeds function which will be discussed later as we proceed. else it throws an error message saying "Transfer failed"
+If the transaction is successful, it calls the `storePurchasedSeeds` function which will be discussed later as we proceed. else it throws an error message saying "Transfer failed"
 
+Up next we create a function called getPurchasedSeeds to fetch the list of all seeds purchased by a user. 
 
-
-
-next we create the storePurchasedSeeds function which was called in the buySeed function. It stores the seeds purchased by a user.
-
-```js
-function storePurchasedSeeds(address _owner,
- string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) public {
-    purchasedSeeds[msg.sender].push(PurchasedSeedInfo({purchasedFrom : _owner,
-    seedName : _seedName, price : _price, email : _email, seedImgUrl : _seedImgUrl, timeStamp : block.timestamp }));
-}
-``` 
-The function accepts parameters such as _owner, _seedName, _seedImgUrl, _price, _email and their various types.
-
-it uses the address of the caller of that contract as its key and stores the information provided in an array.
-
-up next we create a function called getPurchasedSeeds to fetch the list of all seeds purchased by a user. 
-
-```js
+```solidity
 function getPurchasedSeeds() public view returns (PurchasedSeedInfo[] memory) {
     return purchasedSeeds[msg.sender];
 }
 
 ``` 
 
-The function has a visibility type of public uses the view parameter since we are not modifying anything and returns an array which is the PurchasedseedInfo.
+The function has a visibility type of internal because we don't wnat it to be accessed outside of our contract. It also uses the view keyword since we are not modifying anything and returns an array which is the `PurchasedseedInfo`.
 
 
-next we create a  public function which returns an int value. The function returns the length of seeds created on the blockchain.
+Next we are going to create the `storePurchasedSeeds` function which was called in the `buySeed` function. It stores the seeds purchased by a user.
 
-```js
+```solidity
+function storePurchasedSeeds(address _owner,
+ string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) public {
+    purchasedSeeds[msg.sender].push(PurchasedSeedInfo({purchasedFrom : _owner,
+    seedName : _seedName, price : _price, email : _email, seedImgUrl : _seedImgUrl, timeStamp : block.timestamp }));
+}
+``` 
+The function accepts parameters such as _owner, _seedName, _seedImgUrl, _price, _email and their various types. It uses the address of the buyer as its key and stores the information provided in an array.
+
+
+next we are going to create a public function called `getListedSeedLength` which returns an int value. The function returns the length of seeds created on the blockchain.
+
+```solidity
 function getListedSeedLength() public view returns (uint) {
         return (listedSeedLength);
     }
@@ -325,7 +325,7 @@ function getListedSeedLength() public view returns (uint) {
 Here is the full code:
 
 
-```js
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.3;
 
@@ -455,29 +455,34 @@ function storePurchasedSeeds(address _owner,
 ## Contract Deployment
 
 To deploy the contract, we would need:
-1. [CeloExtensionWallet]((https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en))
-2. [ Celo Faucet](https://celo.org/developers/faucet) 
-3. Celo Remix Plugin
+1. Install the [CeloExtensionWallet]((https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en)) from Google Chrome store.
 
-Download the Celo Extension Wallet from the Google chrome store using the link above. After doing that, create a wallet, store your key phrase in a very safe place to avoid permanently losing your funds.
+2. Create a wallet and ensure you store your key phrase in a very safe place when creating your wallet to avoid permanently losing your funds below is a break down on how to create a wallet:
+![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_create_wallet.gif)
 
-After downloading and creating your wallet, you will need to fund it using the Celo Faucet. Copy the address to your wallet, click the link to the faucet above and the paste the address into the text field and confirm.
+3. Get the Celo token for the alfajores testnet [here](https://celo.org/developers/faucet) : below is a breakdown on how to do it.
 
-Next up, on remix, download and activate the celo plugin from the plugin manager. Connect your wallet and deploy your contract.
+4. Install the Celo remix plugin and deploy your contract. Below is the breakdown.  
+![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_install_remix_plugin_and_deploy_contract.gif)
+
+In the gif above, replace `marketplace.sol` with `AgroCelo.sol`
+
+Congratulations! you have just deployed you first smart contract on the Celo blockchain.
 
 
 ## Frontend Development
 
-Going futher we will be building our frontend to interact with our smartcontract that is being deployed. You need to make sure you have installed Node.js 10 or higher version.
+Going futher we will be building our frontend to interact with our smart contract that is being deployed on the Celo blockchain. You need to make sure you have installed Node.js 10 or higher version.
 
 Next we need to open a command line interface in the folder or directory where you want to build the frontend and run the code below:
 
 ```js
 git clone https://github.com/dacadeorg/celo-boilerplate-web-dapp
 ```
-This will create a folder called celo-boilerplate-web-dapp. The folder contains neccessary setup files needed to build our frontend and connect it with our smartcontract.
+This will create a folder called celo-boilerplate-web-dapp. The folder contains neccessary setup files and folders needed to build our frontend and connect it with our smart contract.
 
-next we move to our root directory on the same command line interface by run this code
+Next we move to our root directory on the same command line interface by run this code
+
 ```js
 cd celo-boilerplate-web-dapp
 ``` 
@@ -552,13 +557,12 @@ Up next, we would importing the font as our main font by using the style tag to 
     </head>
 ```
 
-up next we would be defining our body tag where we would create our forms,  modals, hero and navigation bar, notification bar. lets get started.
+up next we would be defining our body tag where we would create our notification bar, navigation bar, hero, modals and forms. lets get started.
 
 For the notification bar we write this code:
 
 ```html
 <body>
-
 <!-- Displays notifications on the web page -->
     <div class="container">
           <div class="alert alert-warning fixed-top" role="alert">
@@ -567,7 +571,7 @@ For the notification bar we write this code:
     </div>
 ```
 
-The div has the class alert that you will later select in your JS code. The span element has the id notification, that you will use to insert the text that you want to display.
+The div has the class `alert alert-warning` which will make text appear in an alert box. The span element has the id notification, that you will use to select the div and insert the text that you want to display in our Javascript code.
 
 
 Up next is the navigation bar which is used to show our app name and the amount of cUSD we currently have. The amount of cUSD we be dynamic as the main data will be gotten from our javascript file.
@@ -586,8 +590,7 @@ Up next is the navigation bar which is used to show our app name and the amount 
  <!-- Navbar ends here -->
 ``` 
 
-The navbar has two spans one which shows the name of our app and the secound which shows the amount of cUSD we have. The second span has an id of "balance" which will be later needed in our javascript file to render the actual celo balance.
-
+The navbar has two spans one which shows the name of our app and the secound which shows the amount of cUSD we have. The second span has an id of "balance" which will be later needed in our javascript file to render the actual celo balance a user have.
 
 Up next we will be creating our hero where which is a background that tells the user what the app does.
 
