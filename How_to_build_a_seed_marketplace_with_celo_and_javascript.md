@@ -486,7 +486,13 @@ Next we need to open a command line interface in the folder or directory where y
 ```js
 git clone https://github.com/dacadeorg/celo-boilerplate-web-dapp
 ```
-This will create a folder called celo-boilerplate-web-dapp. The folder contains neccessary setup files and folders needed to build our frontend and connect it with our smart contract.
+This will create a folder called celo-boilerplate-web-dapp. The folder contains neccessary setup files and folders needed to build our frontend and connect it with our smart contract. The three main folder you should watch out for is the: 
+`contract` folder which contains:
+- erc20.abi.json file
+- marketplace.abi.json file
+- marketplace.sol file
+
+`Public` folder which contain the index.html file and the `src` folder which contains the main.js file.
 
 Next we move to our root directory on the same command line interface by run this code
 
@@ -1087,18 +1093,18 @@ Here is the full code for the html part:
   </body>
 </html>
 ```
-##Reading and Writing on Our SmartContract
-Before going into the main.js file,  we need to be able to read and write from our smart contract and to be able to do that we need to go to Remix IDE and where we already wrote our smart contract, compile it and deploy on the celo network.
+## Reading and Writing on Our SmartContract
+Before going into the main.js file,  we need to be able to read and write from our smart contract in our Javascript file and to be able to do that we need to go to Remix IDE and where we already wrote our smart contract, compile it and deploy on the celo network.
 
 in order to interact with your smart contract that is deployed in bytecode, you need an interface, the ABI (Application Binary Interface), so that the contractKit in our main.js can understand the bytecode. The ABI allows you to call functions and read data (Learn more about the ABI).
 
-When you compile your contract in Remix, Remix also creates the ABI in the form of a JSON for your contract. Copy the JSON and save it into the marketplace.abi.json file of the contracts folder in your project.
+When you compile your contract in Remix, Remix also creates the ABI in the form of a JSON for your contract. Copy the JSON and save it into the marketplace.abi.json file of the contracts folder in your Celo boilerplate.
 
-After that you need to copy the smartcontract code and paste in your marketplace.js. When all this is done we can now move  to our main.js but take note of the address in which your contract is being deployed to because we will need it in our main.js file.
+After that you need to copy the smart contract code and paste in your marketplace.js. When all this is done we can now move  to our main.js but take note of the address in which your contract is being deployed to because we will need it in our main.js file to interact with the smart contract.
 
 
 ## main.js
-The main.js file is file that enable us interact with our smartcontract. The beginning of the main.js file, necessary libraries and files are imported.
+The main.js file is file that enable us interact with our smart contract from our frontend. In the beginning of the main.js file, necessary libraries and files are imported.
 
 ```js
 import Web3 from "web3"
