@@ -34,18 +34,18 @@ This tutorials exposes you on how to build a simple fullstack dapp (decentralize
 - **[NodeJS](https://nodejs.org/en/download)** from V12.or higher
 - A code editor or text editor. **[VSCode](https://code.visualstudio.com/download)** is recommended
 - A terminal. **[Git Bash](https://git-scm.com/downloads)** is recommended
-- **[Remix](https://remix.ethereum.org)**
-- **[Celo Extension Wallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en)**.
+- Remix IDE. Click **[here](https://remix.ethereum.org)** to for the web version.
+- Celo Extension Wallet. Click **[here](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en)** to download.
 
 ## Let's Begin
 
-Below is a gif image of what we are going to build.
+Below is a preview of what we are going to build.
 
 ![image](images/1.PNG)
 
 ## Smart Contract Development
 
-Lets begin by building our first smart contract on Solidity using the Remix IDE. The Remix IDE is a web based IDE that allows developers to write, test and deploy smart contracts on the Celo blockchain.   
+Lets begin by building our first smart contract on Solidity using the Remix IDE. The Remix IDE is a web based IDE that allows developers to write, test and deploy smart contracts on the blockchain. But for this tutorial we will be deploying our smart contract on the Celo network or blockchain.  
 
 You can learn how the remix works by following the steps below:
 
@@ -55,7 +55,7 @@ You can learn how the remix works by following the steps below:
   - Start the tutorial and finish all lessons of Remix Basics.
 
 Here is a preview of the Remix IDE:
-![image](images/2.png)
+![image](https://cdn-celo-101-dacade.netlify.app/celo_2_1_remix_basics.gif)
 
 Considering you have understood how the Remix IDE works, let's create a Soliidity file: called seedmarketplace.sol
 
