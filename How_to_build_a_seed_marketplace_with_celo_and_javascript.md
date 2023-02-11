@@ -23,9 +23,9 @@ Ethereum applications are built using smart contracts. Smart contracts are progr
 ## Prerequisites:
 This tutorial exposes you on how to build a simple fullstack dapp (decentralized application) on the Celo network using Solidity (SmartContract) and Javascript (Frontend). In order for us to move futher, you will need to have a basic understanding of the following:
 
-- Basic understanding of blockchain concepts. You can click **[here](https://dacade.org/communities/blockchain/courses/intro-to-blockchain) to learn.
+- Basic understanding of blockchain concepts. You can click [here](https://dacade.org/communities/blockchain/courses/intro-to-blockchain) to learn.
 - Basic understanding of what a smart contract is.
-- Basic knowledge on solidity and its concepts. you can click **[here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
+- Basic knowledge on solidity and its concepts. you can click [here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
 - Basic knowledge of HTML and Javascript.
 - Basic understanding on the command line.
 
@@ -455,14 +455,18 @@ function storePurchasedSeeds(address _owner,
 ## Contract Deployment
 
 To deploy the contract, we would need:
-1. Install the [CeloExtensionWallet]((https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en)) from Google Chrome store.
+1. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from Google Chrome store.
 
 2. Create a wallet and ensure you store your key phrase in a very safe place when creating your wallet to avoid permanently losing your funds below is a break down on how to create a wallet:
+
 ![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_create_wallet.gif)
 
 3. Get the Celo token for the alfajores testnet [here](https://celo.org/developers/faucet) : below is a breakdown on how to do it.
 
-4. Install the Celo remix plugin and deploy your contract. Below is the breakdown.  
+![image](images/celo_get_token_from_faucet.gif)
+
+4. Install the Celo remix plugin and deploy your contract. Below is the breakdown. 
+
 ![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_install_remix_plugin_and_deploy_contract.gif)
 
 In the gif above, replace `marketplace.sol` with `AgroCelo.sol`
