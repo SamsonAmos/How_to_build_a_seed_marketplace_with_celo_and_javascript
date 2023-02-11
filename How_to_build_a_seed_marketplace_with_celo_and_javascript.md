@@ -108,7 +108,7 @@ After defining our `IERC20Token` interface`, we define our contract with the key
 contract AgroCelo{
     uint internal listedSeedLength = 0;
     address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
-...
+```
 
 In the next line, you define a state variable listedSeedLength, this is going to keep track of the number of seeds listed on the blockchain and also in storing `seedInformation`. It is of a `uint` type which means it can only store integer values. [(Learn more about data types in solidity)](https://docs.soliditylang.org/en/latest/types.html).
 
