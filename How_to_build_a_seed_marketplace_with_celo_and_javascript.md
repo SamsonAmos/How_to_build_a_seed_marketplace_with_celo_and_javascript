@@ -41,7 +41,7 @@ This tutorials exposes you on how to build a simple fullstack dapp (decentralize
 
 Below is a gif image of what we are going to build.
 
-![image](images/1.png)
+![image](images/1.PNG)
 
 ## Smart Contract Development
 
