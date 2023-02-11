@@ -21,13 +21,13 @@ One of the main features of Celo is its use of proof-of-stake (PoS) consensus, w
 Ethereum applications are built using smart contracts. Smart contracts are programs written in languages like Solidity that produce bytecode for the Ethereum Virtual Machine or EVM, a runtime environment. Programs encoded in smart contracts receive messages and manipulate the blockchain ledger and are termed on-chain.
 
 ## Prerequisites:
-This tutorials exposes you on how to build a simple fullstack dapp (decentralized application) on the Celo network using Solidity (SmartContract) and Javascript (Frontend). In order for us to move futher, you need to be familiar with the following:
+This tutorial exposes you on how to build a simple fullstack dapp (decentralized application) on the Celo network using Solidity (SmartContract) and Javascript (Frontend). In order for us to move futher, you will need to have a basic understanding of the following:
 
 - Basic understanding of blockchain concepts. You can click **[here](https://dacade.org/communities/blockchain/courses/intro-to-blockchain) to learn.
 - Basic understanding of what a smart contract is.
 - Basic knowledge on solidity and its concepts. you can click **[here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
 - Basic knowledge of HTML and Javascript.
-- Familiarity with the command line.
+- Basic understanding on the command line.
 
 ## Requirements: 
 - Access to a computer with internet connection and a chrome web browser.
@@ -57,12 +57,12 @@ You can learn how the remix works by following the steps below:
 Here is a preview on how to do it.
 ![image](https://cdn-celo-101-dacade.netlify.app/celo_2_1_remix_basics.gif)
 
-Considering you have understood how the Remix IDE works, let's create a Soliidity file: called AgroCelo.sol
+Considering you have understood how the Remix IDE works, let's build our smart contract by create a Soliidity file: called AgroCelo.sol
 
   - Go to remix.ethereum.org, 
   - Create a new file, 
-  - Name it AgroCelo.sol. You give it any name you want but lets stick to AgroCelo.sol. 
-  - Open that file. The .sol extension indicates that it is a solididty file.
+  - Name it AgroCelo.sol. You can give it any name you want but lets stick to AgroCelo.sol. 
+  - Open that file. The .sol extension indicates that it is a Solididty file.
 
 
 On the first line of your AgroCelo.sol lets include a statement that specifies the license under which the code is being released.
@@ -74,11 +74,11 @@ pragma solidity >=0.7.0 <0.9.0;
 
 This license governs how the code can be used, and it is important to ensure that the correct license is used to avoid any legal issues. A resource such as SPDX can be used to help identify a suitable license.
 
-Using the pragma keyword, you specify the solidity version that you want the compiler to use. In this case, it should be higher than or seven and lower than nine. It is important to specify the version of the compiler because solidity changes constantly.
+Using the pragma keyword, you specify the Solidity version that you want the compiler to use. In this case, it should be higher than or seven and lower than nine. It is important to specify the version of the compiler because Solidity changes constantly.
 
 Next up, we define an `IERC20Token` interface which enables us to interact with the celo stablecoin (cUSD). 
 
-```js
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity >=0.7.0 <0.9.0;
@@ -102,26 +102,24 @@ These tokens have pre-defined functions and events that can be easily used in co
 
 You can find more information on how to use these functions and events in the Celo **[documentation](https://docs.celo.org/developer-guide/celo-for-eth-devs)**. The documentation also provides more details on how to interact with ERC-20 tokens and how to use them with the Celo network.
 
+After defining our `IERC20Token` interface`, we define our contract with the keyword contract and give it a name. which in our case we gave it AgroCelo. You can give it any name but ensure its descriptive.
 
-
-After defining our `IERC20Token` interface`, we define our contract with the keyword contract and give it a name. which in our case we gave it SeedMarketplace. You can give it any name but ensure its descriptive.
-
-```js
-contract SeedMarketplace{
-    uint internal seedLength = 0;
+```solidity
+contract AgroCelo{
+    uint internal listedSeedLength = 0;
     address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
-  ...
-```
+...
 
-In the next line, you define a state variable seedLength, this is going to keep track of the seeds in our contract. It is of a `uint` type which means it can only store integer values. [(Learn more about data types in solidity)](https://docs.soliditylang.org/en/latest/types.html)
+In the next line, you define a state variable listedSeedLength, this is going to keep track of the number of seeds listed on the blockchain and also in storing `seedInformation`. It is of a `uint` type which means it can only store integer values. [(Learn more about data types in solidity)](https://docs.soliditylang.org/en/latest/types.html).
+
 We also define the visibility of our variable to `internal` which means it cannot be accessed from external smart contracts or addresses and can only be modified within the smart contract. ([Learn more about visiblity](https://docs.soliditylang.org/en/latest/contracts.html#visibility-and-getters))
 
 Next, To interact with the cUSD ERC-20 token on the Celo alfajores test network, you need to know the address of the token.
 
+After defining the single variables used in the contract, we need  to create a `model` for our seed called `SeedInformation` which you can give it your own name if you wish. This model will take the basic details about a seed to be listed on the blockchain.
 
-After defining the single variables used in the contract, you want to create a "model" for our seed below.
-
-```js
+```solidity
+// Ceating a struct to store seed details.
     struct SeedInformation {
         address  owner;
         string seedName;
@@ -141,23 +139,13 @@ For this tutorial, these would be the variables that you would store in the stru
 3. seedImgUrl - This stores the image url of the seed, it is of type string.
 4. seedDetails - This stores the description of the seed, it is of type string.
 5. seedLocation - This stores the location of the seeed, it is of type string.
-6. price - This stores the price of the seed. Its a number so its of type uint.
+6. price - This stores the price of the seed. It is a number so its of type uint.
 7. email - This stores the email of the seller of that seed, it is of type string.
-
-
-
-after creating the model of our seed, we would create a map to store multiple seeds:
-```js
-mapping (uint => SeedInformation) internal listedSeeds;
-```
-
-To handle multiple seeds, a mapping is needed where you can access the value of a seed through its key. Just like dictionaries in python or objects in Javascript.
-To create a mapping, you use the keyword `mapping` and assign a key type to a value type. In this case, your key would be an integer and the value would be the struct SeedInformation we just created.
-
 
 next we would create another model called PurchasedSeedInfo. This model will be used later by a map to store seeds being purchased.
 
-```js
+```solidity
+// creating a struct to store purchased seed details.
 struct PurchasedSeedInfo {
         address purchasedFrom;
         string seedName;
@@ -167,31 +155,48 @@ struct PurchasedSeedInfo {
         string email;
     }
 ````
-
 the variables used in the above struct are:
 
 1. purchasedFrom - its of type address. It is used to store the address of the owner of that seed.
-2. seedName - it is of type string, it stores the name of the seed. .
-3. seedImgUrl - it is of type string, it stores the image url of the seed, .
-4. seedDetails - it is of type string, it stores the description of the seed, .
-5. seedLocation - it is of type string, it stores the location of the seed, .
+2. seedName - it is of type string, it stores the name of the seed.
+3. seedImgUrl - it is of type string, it stores the image url of the seed.
+4. seedDetails - it is of type string, it stores the description of the seed.
+5. seedLocation - it is of type string, it stores the location of the seed.
 6. price - it is of type uint since we are storing a number. It stores the price of the seed. Its a number so its of type uint.
-7. email - it is of type string, it stores the email of the seller of that seed, .
+7. email - it is of type string, it stores the email of the seller of that seed.
 
+After creating the two models of our seed, we would create a map to store the `SeedInformation` model and also the `PurchasedSeedInfo` model. 
 
-After creating the model we need to have to store all seeds purchased by a particular buyer. We can achieve that by using the mapping method
+```solidity
+//map used to store listed seeds.
+    mapping (uint => SeedInformation) internal listedSeeds;
 
-```js
-mapping(address => PurchasedSeedInfo[]) internal purchasedSeeds;
+    //map used to store seeds purchased.
+    mapping(address => PurchasedSeedInfo[]) internal purchasedSeeds;
+
 ```
 
-this time the mapping method uses the address of the buyer as key to store all seed purchased by that particular buyer in an array.
+To handle multiple seeds, a mapping is needed where you can access the value of a seed through its key. Just like dictionaries in python or objects in Javascript.
+
+To create a mapping, you use the keyword `mapping` and assign a key type to a value type. In this case, your key would be an integer and the value would be the struct `SeedInformation` we just created.
+
+
+The second mapping stores the `PurchasedSeedInfo` model which is all seeds purchased by a particular buyer. This time the mapping method uses the address of the buyer as it's key to store all seed purchased by that particular buyer in an array.
 
 In the next section, you will define a function to add the seed to the smart contract.
 
-```js
+```solidity
+// Function used to list a seed.
+
     function listSeed(string memory _seedName, string memory _seedImgUrl,
     string memory _seedDetails, string memory  _seedLocation, uint _price, string memory _email) public {
+
+        require(bytes(_seedName).length > 0, "seedName cannot be empty");
+        require(bytes(_seedImgUrl).length > 0, "seedImgUrl cannot be empty");
+        require(bytes(_seedDetails).length > 0, "seedDetails cannot be empty");
+        require(bytes(_seedLocation).length > 0, "seedLocation cannot be empty");
+        require(bytes(_email).length > 0, "email cannot be empty");
+        
         listedSeeds[listedSeedLength] = SeedInformation({
         owner : payable(msg.sender),
         seedName: _seedName,
@@ -204,20 +209,21 @@ In the next section, you will define a function to add the seed to the smart con
      listedSeedLength++;
 }
 ```
-In the code above we create a function called listedSeed which includes parameters names and its type. We use the underscore in the name of the parameters to differentiate it from  the struct value we setting. 
+In the code above we create a function called listSeed which includes parameters names and its type. We use the underscore in the name of the parameters to differentiate it from the struct value we are setting.  The function has its  visibilty type set to public.
 
-The function has its  visibilty type set to public.  You can click on this link to know more about visibilty types. 
+Next we use the `require` function to ensure that all fields that the user will fill when listing a seed in the fronted should not be empty. 
 
-Next, we associate the key seedLength with a new SeedInformaition structure in the listedSeeds mapping.
+Next, we associate the key listedSeedLength with a new SeedInformaition structure in the listedSeeds mapping.
 
 The first field of the struct is the address of the owner who can receive payments. The msg.sender function returns the address of the entity that initiated the call and is capable of receiving payments. This address will be stored as the owner's address.
 You also need to assign values to the other variables using the provided parameters.
 
+After that, we are going to increment the listedSeedLength by 1 so as to avoid listing a seed with the same id. 
 
 
-next we create a function to read a listed seed when the index of that seed is passed
+Up next we create a function that reads a listed seed when the index or id of that seed is passed.
 
-```js
+```solidity
     function getListedSeedById(uint _index) public view returns (
         address,
         string memory,
