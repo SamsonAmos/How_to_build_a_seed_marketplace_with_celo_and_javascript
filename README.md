@@ -24,11 +24,11 @@ Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Ja
     + [main.js](#main)
   * [Deployment on Github pages](#deployment-on-github-pages)
   * [Conclusion](#conclusion)
-  * [Next steps](#next-steps)
+  * [Next step](#next-step)
 
 # How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
 
-Before we procced, the purpose of this tutorial is to know how to build and deploy a simple fullstack dApp (decentralized application) on the Celo blockchain using Solidity (SmartContract) and Javascript (Frontend).
+Before we procced,
 
 here is a live demo of what will be building [https://samsonamos.github.io/AgroCelo1/](https://samsonamos.github.io/AgroCelo1/)
 

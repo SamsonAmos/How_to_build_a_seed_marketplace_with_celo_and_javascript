@@ -24,7 +24,7 @@ Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Ja
     + [main.js](#main)
   * [Deployment on Github pages](#deployment-on-github-pages)
   * [Conclusion](#conclusion)
-  * [Next steps](#next-steps)
+  * [Next step](#next-step)
 
 # How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
 
