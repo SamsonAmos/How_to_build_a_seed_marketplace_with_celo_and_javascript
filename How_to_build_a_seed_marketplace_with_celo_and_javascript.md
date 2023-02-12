@@ -22,7 +22,7 @@ Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Ja
     + [The HTML part of the Dapp](#the-html-part-of-the-dapp)
     + [Reading and Writing on Our SmartContract](#reading-and-writing-on-our-smartContract)
     + [main.js](#main)
-  * [Deployment](#deployment)
+  * [Deployment on Github pages](#deployment-on-github-pages)
   * [Conclusion](#conclusion)
   * [Next steps](#next-steps)
 
