@@ -1122,33 +1122,38 @@ In the above code we imported Web from web3. web3.js is a  popular collection of
 
 Then we import newKitFromWeb3 from the "@celo/contractkit". The contractkit library enables us  to interact with the celo blockchain.
 
+
+In order to interact with our smart contract that is deployed in bytecode, you need an interface, the ABI (Application Binary Interface), so that the contractKit can understand the bytecode. The ABI allows you to call functions and read data [Learn more about the ABI](https://docs.soliditylang.org/en/develop/abi-spec.html).
+
+For us to get our Abi, we need to compile our AgroCelo.sol on Remix and click on the ABI icon to copy the Abi, then, we need to go to our `celo-boiler-plate` project, open the contract folder, open the marketplace.abi.json file clear anything in that file and paste the current Abi we just copied and save. We also need to paste our smart contract code in the `marketplace.sol` file in our boilerplate and save.
+
+After following the steps above, we import the Abi by typing `import marketplaceAbi from "../contract/marketplace.abi.json"`.
+
 Celo's operations often deal with numbers that are too large for Javascript to handle. To handle these numbers, we will use bignumber.js.
 
 The erc2-Abi enables us to interact with the ERC-20 interface. The ERC-20 interface The ERC20 interface is a standard API for tokens within smart contracts. It enables make payment with the Celo stablecoin which is cUSD.
 
-Next we create a variable called `ERC20_DECIMALS` and set its value to 18. By default, the ERC20 interface uses 18 decimal places.
+Next we will create a variable called `ERC20_DECIMALS` and set its value to 18. By default, the ERC20 interface uses 18 decimal places.
 
-On Remix, after the deployment of your contract, you will find the address to that contract which you need to interact with the functionality in your smart contract.
+The `MPContractAddress` is the address that is shown when we deploy our smart contract on the Celo network. On Remix, after the deployment of your contract, you will find the address to that contract which you need to interact with the functionality in your smart contract.
 
-we create a variable called `contractAddress` and assign it the contract address gotten from remix.
-
-Then we create a variable called `cUSDContractAddress` for the cUSD contract address.
+Then we will create a variable called `cUSDContractAddress` for the cUSD contract address which gotten by default. All you have to do is to paste the address which is: `0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1` 
 
 
-Going futher we create three more global variable below:
+Going futher we will create three more global variable below:
 
 ```js
 let kit //contractkit
 let contract // contract variable
 let listedSeeds = [] // array of listed seeds
 ```
-The is use to store the address of a user that is conneted with his/her celo wallet. Later on we will take a look on how it works.
+The kit is used to store the address of a user that is conneted with his/her celo wallet. Later on we will take a look on how it works.
 
 The contract stores an instance of the marketplace contract once a user connects their Celo wallet, so you can interact with it.
 
-The listedSeeds array stores the seeds that we will list on the blockchain soon.
+The listedSeeds array stores the seeds that we will be listed on the blockchain soon.
 
-In order to store information in the kit and contract variables we need to create an asynchronous function called connectCeloWallet that allows a user to connect to the Celo Blockchain and read the balance of their account. The function will perform several checks and actions to ensure that the user has the necessary tools and permissions to interact with the Celo Blockchain.
+In order to store information in the kit and contract variables we need to create an asynchronous function called `connectCeloWallet` that allows a user to connect to the Celo Blockchain and read the balance of their account. The function will perform several checks and actions to ensure that the user has the necessary tools and permissions to interact with the Celo Blockchain.
 
 ```js
 //Connects the wallet gets the account and initializes the contract
@@ -1178,7 +1183,6 @@ const connectCeloWallet = async function () {
   }
 }
 ```
-
 
 The first step is to check if the user has the CeloExtensionWallet installed by checking if the "window.celo" object exists. If it does not exist, the function will use the console to inform the user that they need to install the wallet.
 
@@ -1210,8 +1214,7 @@ In the approve function, we create a cUSD contract instance with the ABI and the
 Again, you also need to specify who is going to spend the cUSD token. In this case it's the address stored in kit.defaultAccount. It returns the result for error handling if there is.
 
 
-
-Up next we create an asynchronous function called getBalance which we use in getting cUSD of the user and displaying it on the navbar we create in our html file.
+Up next we create an asynchronous function called getBalance which we use in getting cUSD of the user and displaying it on the navbar we created in our html file.
 ```js
   // gets the balance of the connected account
 const getBalance = async function () {
@@ -1222,12 +1225,11 @@ const getBalance = async function () {
 }
   };
 ```
-We start by calling the `kit.getTotalBalance(address)` method, passing in the user's address. This method returns the user's balance in the form of an object that contains the amounts of CELO and cUSD tokens. The returned balance is then stored in the `balance` variable.
+We start by calling the `kit.getTotalBalance(address)` method, passing in the user's address. This method returns the user's balance in the form of an object that contains the amounts of CELO and cUSD tokens. The returned balance is then stored in the `totalBalance` variable.
 
-The next step is to extract the CELO and cUSD balance from the "balance" object by using the `.CELO` and `.cUSD` properties respectively. Then it's shifted the value by -ERC20_DECIMALS which is a way to represent the balance in terms of smaller units in our case 18 decimal places, and then it's converting the value to fixed 2 decimal points. These values are stored in the `celoBalance` and `USDBalance` variables.
+The next step is to extract the CELO and cUSD balance from the "totalBalance" object by using the `.CELO` and `.cUSD` properties respectively. Then it's shifted the value by -ERC20_DECIMALS which is a way to represent the balance in terms of smaller units in our case 18 decimal places, and then it's converting the value to fixed 2 decimal points. These values are stored in the `celoBalance` and `USDBalance` variables.
 
-
-Up next, create a function called `getListesSeeds` that retrieves the seeds information from the smart contract and stores it in the global array called listedSeeds we create above.
+Up next, create a function called `getListesSeeds` that retrieves the seeds information stored on the blockchain and stores it in the global array called `listedSeeds` we create above.
 
 ```js
  // an async function used to get the listed seeds.
@@ -1270,10 +1272,10 @@ Before retrieving the listed seeds, we need to know the number of seeds listed a
 
 Next we will create an empty array called `_listedSeeds` that will be used to store the listed seed objects. Next, we loop throught each seeds, and for each seed, we create a promise by calling the `contract.methods.getListedSeedById(i).call()` to get the listed seed data. Resolve the promise with the  seed data and then push the seed object to your _listedSeeds array. Be aware that the price needs to be a bigNumber object so you can later make correct payments.
 
-After the loop is finished, we wait for all promises in the `listedSeeds` array to be resolved by calling `await Promise.all(_listedSeeds)`, this will make sure that all the listed seeds have been retrieved before calling the renderProductTemplate function which will be created later. We use the renderProductTemplate to show the listedSeeds we just created on the web page.
+After the loop is finished, we wait for all promises in the `listedSeeds` array to be resolved by calling `await Promise.all(_listedSeeds)`, this will make sure that all the listed seeds have been retrieved before calling the renderProductTemplate function which will be created later. We use the `renderProductTemplate` function which we will create next to show the listedSeeds  on the web page.
 
 
-Next is to create the renderProductFunction(). In the renderProductTemplate function we get the id of the element in which we want to render the seeds in our case `marketplace`. Firstly we need to make it empty so as to avoid multiple rendering when the function is being called more than once. next we check if there is seed in the listSeeds array if it is true, we use the foreach loop to create a new div and set the productTemplate which we will discuss next to it and then we append the new div to the `marketplace`. 
+Next is to create the renderProductTemplate function. In the renderProductTemplate function we get the id of the element in which we want to render the seeds in our case `marketplace`. Firstly we need to make it empty so as to avoid multiple rendering when the function is being called more than once. next we check if there is seed in the listSeeds array if it is true, we use the foreach loop to create a new div and set the productTemplate which we will discuss next to it and then we append the new div to the `marketplace`. 
 
 ```js
 // function used to render a html template of listed seeds.
