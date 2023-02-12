@@ -56,7 +56,7 @@ This tutorial exposes you on how to build a simple fullstack dapp (decentralized
 - Remix IDE. Click **[here](https://remix.ethereum.org)** to for the web version.
 - Celo Extension Wallet. Click **[here](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en)** to download.
 
-## Let's Begin
+## Let us Begin
 
 Below is a preview of what we are going to build.
 
