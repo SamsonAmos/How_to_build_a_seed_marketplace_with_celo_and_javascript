@@ -10,6 +10,25 @@ hide_table_of_contents: true
 Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Javascript
 ---
 
+## Table of Contents
+
+  * [Introduction](#introduction)
+  * [Prerequisites](#prerequisites)
+  * [Requirements](#requirements)
+  * [Let us Begin](#let-us-begin)
+  * [Smart Contract Development](#smart-contract-development)
+    + [Contract Deployment](#contract-deployment)
+  * [Frontend Development](#frontend-development)
+    + [The HTML part of the Dapp](#the-html-part-of-the-dapp)
+    + [App.js](#appjs)
+    + [Header.js](#headerjs)
+    + [SalesCars.js](#salescarsjs)
+    + [MyCar.js](#mycarjs)
+    + [AddCar.js](#addcarjs)
+  * [Conclusion](#conclusion)
+  * [Next steps](#next-steps)
+  * [About the Author](#about-the-author)
+
 # How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
 
 ## Introduction:
@@ -1274,7 +1293,6 @@ Next we will create an empty array called `_listedSeeds` that will be used to st
 
 After the loop is finished, we wait for all promises in the `listedSeeds` array to be resolved by calling `await Promise.all(_listedSeeds)`, this will make sure that all the listed seeds have been retrieved before calling the renderProductTemplate function which will be created later. We use the `renderProductTemplate` function which we will create next to show the listedSeeds  on the web page.
 
-
 Next is to create the renderProductTemplate function. In the renderProductTemplate function we get the id of the element in which we want to render the seeds in our case `marketplace`. Firstly we need to make it empty so as to avoid multiple rendering when the function is being called more than once. next we check if there is seed in the listSeeds array if it is true, we use the foreach loop to create a new div and set the productTemplate which we will discuss next to it and then we append the new div to the `marketplace`. 
 
 ```js
@@ -1668,9 +1686,7 @@ You can follow or use this project as a reference to edit yours and get the requ
 Congratulations 🎉, you were able to build your fullstack dapp using solidity and react on the celo smart contract. Great JOB!!
 
 ## Next steps
-You can challenge yourself by adding more functions and implementing them using react on the frontend. You can also look at various celo smart contracts and see if you can build a dapp using react
+You can challenge yourself by adding more functions and implementing them using react on the frontend. You can also look at various celo smart contracts and see if you can build a dapp using javascript.
 
 ## About the Author
-Daniel Ogbuti is a web3 developer with a passion for teaching as well as learning. I would love to connect on Twitter @daniel_ogbuti
-
-See you soon!
+Samson Amos is a web2 and a web3 developer with a passion for teaching as well as learning. I would love to connect on Twitter @daniel_ogbuti
