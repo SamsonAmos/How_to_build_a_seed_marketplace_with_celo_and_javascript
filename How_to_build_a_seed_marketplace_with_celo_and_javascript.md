@@ -25,6 +25,7 @@ Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Ja
   * [Deployment on Github pages](#deployment-on-github-pages)
   * [Conclusion](#conclusion)
   * [Next step](#next-step)
+  * [About the Author](#about-the-author)
 
 # How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
 
@@ -1707,5 +1708,6 @@ The source code of this project is hosted [here](https://github.com/SamsonAmos/A
 
 - [Live Demo](https://samsonamos.github.io/AgroCelo1/)
 
-
+## About the Author
+Samson Amos is a web2 and a web3 developer who loves a coding as well as teaching others. You can reach me out on Twitter [@SamsonAmoz](https://twitter.com/SamsonAmoz)
 
