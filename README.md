@@ -280,31 +280,30 @@ The function will return the address of the `owner`, `seedName`, `seedImgUrl`, `
 Up next, we are going to create a function called `buySeed` to enable users to purchase a seed on the smart contract. 
 
 ```solidity
-    function buySeed(uint _index, address _owner, string memory _seedName, string memory _seedImgUrl,  uint _price, string memory _email) public payable  {
-        require(_price > 0, "Price should be greater than 0");
-        require(listedSeeds[_index].owner != msg.sender, "you are already an owner of this seed");
-        require(
-          IERC20Token(cUsdTokenAddress).transferFrom(
-            msg.sender,
-            listedSeeds[_index].owner,
-            listedSeeds[_index].price
-          ),
-          "Transfer failed."
-        );
-        storePurchasedSeeds(_owner, _seedName, _seedImgUrl, _price, _email);
-    }
+  // function used to purchase a seed by another farmer.
+  function buySeed(uint _index) public payable  {
+          require(listedSeeds[_index].owner != msg.sender, "you are already an owner of this seed");
+          require(
+            IERC20Token(cUsdTokenAddress).transferFrom(
+              msg.sender,
+              listedSeeds[_index].owner,
+              listedSeeds[_index].price
+            ),
+            "Transfer failed."
+          );
+          storePurchasedSeeds(listedSeeds[_index].owner, listedSeeds[_index].seedName, listedSeeds[_index].seedImgUrl, listedSeeds[_index].price, listedSeeds[_index].email);
+      }
+      }
 
 ```
 
-The "buySeed" function, which is `public` and `payable`, takes the `_index`, `_owner`, `_seedName`, `seedImgUrl`, `_price`, `_emaii` and their respective types as parameters.
+The `buySeed` function, which is `public` and `payable`, takes an `index` as a parameter.
 
-It will have three `require` statements as validation checks. 
+It will have two `require` statements as validation checks. 
 
-The first `require` method checks if the price that is being passed is greater than 0. If the condition is true it will move to the next require method. If the condition is false, it will throw an error message: `"Price should be greater than 0"`.
+The first `require` method ensures that the buyer of that seed should not be the same as the owner. If it is false, it throws an error saying "you are already an owner of this seed".
 
-The second `require` method ensures that the buyer of that seed should not be the same as the owner. If it is false, it throws an error saying "you are already an owner of this seed".
-
-The third `require` method is to ensure that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored cUSD address to call the transferFrom method to transfer cUSD.
+The second `require` method is to ensure that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored cUSD address to call the transferFrom method to transfer cUSD.
 
 The first parameter is the address of the `sender`, accessed using the `msg.sender` method, the second parameter is the recipient of the transaction, which is the `owner` of the `seed` at the given index, and the final parameter is the `price` of the seed at the given index. 
 
@@ -326,7 +325,7 @@ Next, we are going to create the `storePurchasedSeeds` function which was called
 
 ```solidity
 function storePurchasedSeeds(address _owner,
- string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) public {
+ string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) internal {
     purchasedSeeds[msg.sender].push(PurchasedSeedInfo({purchasedFrom : _owner,
     seedName : _seedName, price : _price, email : _email, seedImgUrl : _seedImgUrl, timeStamp : block.timestamp }));
 }
@@ -436,7 +435,7 @@ contract AgroCelo{
 
 
 // function used to purchase a seed by another farmer.
-function buySeed(uint _index, address _owner, string memory _seedName, string memory _seedImgUrl,  uint _price, string memory _email) public payable  {
+function buySeed(uint _index) public payable  {
         require(listedSeeds[_index].owner != msg.sender, "you are already an owner of this seed");
         require(
           IERC20Token(cUsdTokenAddress).transferFrom(
@@ -446,7 +445,7 @@ function buySeed(uint _index, address _owner, string memory _seedName, string me
           ),
           "Transfer failed."
         );
-        storePurchasedSeeds(_owner, _seedName, _seedImgUrl, _price, _email);
+        storePurchasedSeeds(listedSeeds[_index].owner, listedSeeds[_index].seedName, listedSeeds[_index].seedImgUrl, listedSeeds[_index].price, listedSeeds[_index].email);
     }
 
 // function used to fetch seeds purchased already by you.
@@ -457,7 +456,7 @@ function getPurchasedSeeds() public view returns (PurchasedSeedInfo[] memory) {
 
 // function used to store purchase seed by a particular owner.
 function storePurchasedSeeds(address _owner,
- string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) public {
+ string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) internal {
     purchasedSeeds[msg.sender].push(PurchasedSeedInfo({purchasedFrom : _owner,
     seedName : _seedName, price : _price, email : _email, seedImgUrl : _seedImgUrl, timeStamp : block.timestamp }));
 }
@@ -1117,11 +1116,11 @@ Here is the full code for the HTML part of our tutorial:
 ## Reading and Writing on Our Smart Contract
 Before going into the `main.js` file,  we need to be able to read and write from our smart contract in our Javascript file, and to be able to do that we need to go to `Remix IDE` where we already wrote our smart contract to compile it and deploy on the Celo Alfajores network.
 
-To interact with our smart contract that is deployed in bytecode, we need an interface, the ABI (Application Binary Interface), so that the `contractKit` in our `main.js` file can understand the bytecode. The ABI allows you to call functions and read data (Learn more about the ABI).
+To interact with our smart contract that is deployed in bytecode, we need an interface, the ABI (Application Binary Interface), so that the `contractKit` in our `main.js` file can understand the bytecode. The ABI allows you to call functions and read data [Learn more about the ABI](https://docs.soliditylang.org/en/develop/abi-spec.html)..
 
-When you compile your contract in Remix, Remix also creates the ABI in the form of a JSON object that contains actions that allow us to interact with our smart contract. Copy the JSON and save it into the marketplace.abi.json file of the contracts folder in our project's directory.
+When you compile your contract in Remix, Remix also creates the ABI in the form of a JSON object that contains actions that allow us to interact with our smart contract. Click on the ABI icon to copy the Abi and save it into the `marketplace.abi.json` file of the contracts folder in our project's directory.
 
-After that, you need to copy the smart contract code and paste it into your `marketplace.js` file. When all this is done we can now move to our `main.js` file but take note of the address to which your contract is being deployed because we will need it in our `main.js` file to interact with the smart contract.
+After that, you need to copy the smart contract code and paste it into your `marketplace.sol` file. When all this is done we can now move to our `main.js` file but take note of the address to which your contract is being deployed because we will need it in our `main.js` file to interact with the smart contract.
 
 
 ## main.js
@@ -1144,15 +1143,13 @@ In the above code, we imported the `Web3` object from the web3 library. `Web3.js
 Then we import `newKitFromWeb3` from the "@celo/contractkit". The contractkit library enables us to interact with the Celo blockchain.
 
 
-To interact with our smart contract that is deployed in bytecode, you need an interface, the ABI (Application Binary Interface), so that the contractKit can understand the bytecode. The ABI allows you to call functions and read data [Learn more about the ABI](https://docs.soliditylang.org/en/develop/abi-spec.html).
-
-For us to get our ABI, we need to compile our `AgroCelo.sol` on Remix and click on the ABI icon to copy the Abi, then, we need to go to our project folder, open the contract folder, open the `marketplace.abi.json`  file and clear anything in that file and paste the current ABI we just copied and saved. We also need to paste our smart contract code in the `marketplace.sol` file in our boilerplate and save it.
+To interact with our smart contract on our front end we need the ABI of our smart contract which we previously copied in the `marketplace.abi.json` file.
 
 After following the steps above, we import the ABI by typing `import marketplaceAbi from "../contract/marketplace.abi.json"`.
 
 Celo's operations often deal with numbers that are too large for Javascript to handle. To handle these numbers, we will use the package `bignumber.js`.
 
-The ERC20-ABI enables us to interact with the cUSD token which we will use to make payments.
+The `erc20Abi` enables us to interact with the cUSD token which we will use to make payments.
 
 Next, we will create a variable called `ERC20_DECIMALS` and set its value to 18. The cUSD uses 18 decimal places.
 
@@ -1168,9 +1165,9 @@ let kit //contractkit
 let contract // contract variable
 let listedSeeds = [] // array of listed seeds
 ```
-The `kit` is used to store the address of a user that is connected with his/her Celo wallet. Later on, we will take a look at how it works.
+The `kit` variable is used to store the address of a user that is connected with his/her Celo wallet. Later on, we will take a look at how it works.
 
-The contract stores an instance of the marketplace contract once a user connects their Celo wallet, so you can interact with it.
+The `contract` variable stores an instance of the marketplace contract once a user connects their Celo wallet, so you can interact with it.
 
 The `listedSeeds` array stores the seeds that will be listed on the blockchain soon.
 
@@ -1508,11 +1505,6 @@ document.querySelector("#addModal1").addEventListener("click", async (e) => {
 
       // declaring variables for the smartcontract parameters
       const index = e.target.id
-      var _price =  new BigNumber(listedSeeds[index].price)
-      var _seedName = listedSeeds[index].seedName
-      var _seedImgUrl = listedSeeds[index].seedImgUrl
-      var _email = listedSeeds[index].email
-      var _owner = listedSeeds[index].owner
 
       notification("⌛ Waiting for payment approval...")
 
@@ -1527,7 +1519,7 @@ document.querySelector("#addModal1").addEventListener("click", async (e) => {
 
 We start by using a query selector to target the id `addModal1` which is the id of the modal that shows the details of a seed. In that modal is a buy button with a class name of "buyBtn". We use the if condition to ensure that the element that we clicked on should have a class name of `buyBtn` before executing the next line of instruction. 
 
-In the next line of instruction we are going to create six variables. The first variable stores the id which is a numeric value of the targeted button,  while the rest of the variables gets the details of that seed in the global array according to the id passed.
+In the next line of instruction, we are going to create a variable that stores the id which is a numeric value of the targeted button.
 
 The next line pop  a notification to tell the user that their request is being processed after which we are going to use a try block to approve the price of the seed we intend to buy by calling the `approve` method and passing the price of the seed as its parameter.
 
@@ -1537,7 +1529,7 @@ After payment is being approved we are going to display another notification to 
 notification(`⌛ Awaiting payment for "${listedSeeds[index].seedName}"...`)
       try {
         const result = await contract.methods
-          .buySeed(index, _owner, _seedName, _seedImgUrl, _price, _email)
+          .buySeed(index)
           .send({ from: kit.defaultAccount })
         notification(`🎉 You successfully bought "${listedSeeds[index].seedName}".`)
         getListedSeeds()
@@ -1552,7 +1544,7 @@ notification(`⌛ Awaiting payment for "${listedSeeds[index].seedName}"...`)
   })
 ```
 
-We pass the arguments such as the `index` of the seed, `owner`, `seed name`, `price` and `email` in the `buySeed` function and then we send the transaction. If it is successful, it notifies the user and then call the `getListedSeeds` and `getBalance` function. If there is an error it will also alert the user about the error. After everything is processed we are going to ensure that the notification is turned off by calling the `notificationOff` function.
+We pass the `index` variable as an argument in the `buySeed` function and then we send the transaction. If it is successful, it notifies the user and then call the `getListedSeeds` and `getBalance` function. If there is an error it will also alert the user about the error. After everything is processed we are going to ensure that the notification is turned off by calling the `notificationOff` function.
 
 Up next we are going to create a query selector that will target the tab id and checks for the button is being clicked. This buttons is what enables us to toggle between seed listed on the blockchain and seed bought buy the user.
 
