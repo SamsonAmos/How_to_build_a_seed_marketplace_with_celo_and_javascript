@@ -10,6 +10,8 @@ hide_table_of_contents: true
 Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Javascript
 ---
 
+_Estimated reading time: **52 Minutes**_
+
 ## Table of Contents
 
   * [Introduction](#introduction)
@@ -17,7 +19,7 @@ Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Ja
   * [Requirements](#requirements)
   * [Let us Begin](#let-us-begin)
   * [Smart Contract Development](#smart-contract-development)
-    + [Contract Deployment](#contract-deployment)
+  * [Contract Deployment](#contract-deployment)
   * [Frontend Development](#frontend-development)
     + [The HTML part of the Dapp](#the-html-part-of-the-dapp)
     + [Reading and Writing on Our Smart Contract](#reading-and-writing-on-our-smart-contract)
@@ -46,9 +48,9 @@ This tutorial exposes you on how to build a simple fullstack dApp (decentralized
 
 - Basic understanding of blockchain concepts. You can click [here](https://dacade.org/communities/blockchain/courses/intro-to-blockchain) to learn.
 - Basic understanding of what a smart contract is.
-- Basic knowledge on solidity and its concepts. you can click [here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
+- Basic knowledge on Solidity and its concepts. you can click [here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
 - Basic knowledge of HTML and Javascript.
-- Basic understanding of the command line.
+- Basic understanding of the [command line](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line).
 
 ## Requirements: 
 - Access to a computer with an internet connection and a chrome web browser.
