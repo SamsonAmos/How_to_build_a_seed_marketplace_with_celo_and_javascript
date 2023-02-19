@@ -29,35 +29,35 @@ Slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Ja
 
 # How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
 
-Before we procced,
+Before we proceed,
 
-here is a live demo of what will be building [https://samsonamos.github.io/AgroCelo1/](https://samsonamos.github.io/AgroCelo1/)
+here is a live demo of what will be building https://samsonamos.github.io/AgroCelo1/
 
 ## Introduction:
-A blockchain or cryptographic network is a broad term used to describe a database maintained by a distributed set of computers that do not share a trust relationship or common ownership. This arrangement is referred to as decentralized. The content of a blockchain's database, or ledger, is authenticated using cryptographic techniques, preventing its contents from being added to, edited or removed except according to a protocol operated by the network as a whole.
+A blockchain or cryptographic network is a broad term used to describe a database maintained by a distributed set of computers that do not share a trust relationship or common ownership. This arrangement is referred to as decentralized. The content of a blockchain's database, or ledger, is authenticated using cryptographic techniques, preventing its contents from being added to, edited, or removed except according to a protocol operated by the network as a whole.
 
-Celo blockchain enables fast, secure, and low-cost financial transactions. It is built on top of the Ethereum Virtual Machine (EVM), which is a standardized environment for running smart contracts (self-executing code that can be used to facilitate, verify, and enforce the negotiation or performance of a contract). 
-One of the main features of Celo is its use of proof-of-stake (PoS) consensus, which means that the network is secured by a group of "validators" who stake (or pledge) a certain amount of the platform's native cryptocurrency  in order to participate in the validation of transactions. 
+The Celo blockchain enables fast, secure, and low-cost financial transactions. It is built on top of the Ethereum Virtual Machine (EVM), which is a standardized environment for running smart contracts (self-executing code that can be used to facilitate, verify, and enforce the negotiation or performance of a contract). 
+One of the main features of Celo is its use of proof-of-stake (PoS) consensus, which means that the network is secured by a group of "validators" who stake (or pledge) a certain amount of the platform's native cryptocurrency to participate in the validation of transactions. 
 
 Ethereum applications are built using smart contracts. Smart contracts are programs written in languages like Solidity that produce bytecode for the Ethereum Virtual Machine or EVM, a runtime environment. Programs encoded in smart contracts receive messages and manipulate the blockchain ledger and are termed on-chain.
 
 ## Prerequisites:
-This tutorial exposes you on how to build a simple fullstack dApp (decentralized application) on the Celo network using Solidity (SmartContract) and Javascript (Frontend). In order for us to move futher, you will need to have a basic understanding of the following:
+This tutorial exposes you to how to build a simple full stack dApp (decentralized application) on the Celo network using Solidity (SmartContract) and Javascript (Frontend). In order for us to move further, you will need to have a basic understanding of the following:
 
 - Basic understanding of blockchain concepts. You can click [here](https://dacade.org/communities/blockchain/courses/intro-to-blockchain) to learn.
 - Basic understanding of what a smart contract is.
-- Basic knowledge on solidity and its concepts. you can click [here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
+- Basic knowledge of Solidity and its concepts. you can click [here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
 - Basic knowledge of HTML and Javascript.
-- Basic understanding on the command line.
+- Basic understanding of the command line.
 
 ## Requirements: 
-- Access to a computer with internet connection and a chrome web browser.
+- Access to a computer with an internet connection and a chrome web browser.
 - **[NodeJS](https://nodejs.org/en/download)** from V12.or higher
 - A code editor or text editor. **[VSCode](https://code.visualstudio.com/download)** is recommended
 - A terminal. **[Git Bash](https://git-scm.com/downloads)** is recommended
-- Remix IDE. Click **[here](https://remix.ethereum.org)** to for the web version.
+- Remix IDE. Click **[here](https://remix.ethereum.org)** for the web version.
 - Celo Extension Wallet. Click **[here](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en)** to download.
-- A github account.
+- A GitHub account.
 
 ## Let us Begin
 
@@ -67,27 +67,27 @@ Below is a preview of what we are going to build.
 
 ## Smart Contract Development
 
-Lets begin by building our first smart contract on Solidity using the Remix IDE. The Remix IDE is a web based IDE that allows developers to write, test and deploy smart contracts on the blockchain. But for this tutorial we will be deploying our smart contract on the Celo network or blockchain.  
+Let's begin by building our first smart contract on Solidity using the Remix IDE. The Remix IDE is a web-based IDE that allows developers to write, test and deploy smart contracts on the blockchain. But for this tutorial, we will be deploying our smart contract on the Celo network or blockchain.  
 
 You can learn how the remix works by following the steps below:
 
   - Go to https://remix.ethereum.org/.
-  - Click on featured plugins, “LEARNETH”.
+  - Click on the featured plugin, “LEARNETH”.
   - Click on Remix Basics.
   - Start the tutorial and finish all lessons of Remix Basics.
 
-Here is a preview on how to do it.
+Here is a preview of how to do it.
 ![gif](https://cdn-celo-101-dacade.netlify.app/celo_2_1_remix_basics.gif)
 
-Considering you have understood how the Remix IDE works, let's build our smart contract by create a Soliidity file: called AgroCelo.sol
+Considering you have understood how the Remix IDE works, let's build our smart contract by creating a Solidity file: called AgroCelo.sol
 
-  - Go to remix.ethereum.org, 
+  - Go to https://remix.ethereum.org/, 
   - Create a new file, 
-  - Name it AgroCelo.sol. You can give it any name you want but lets stick to AgroCelo.sol. 
-  - Open that file. The .sol extension indicates that it is a Solididty file.
+  - Name it AgroCelo.sol. You can give it any name you want but let's stick to AgroCelo.sol. 
+  - Open that file. The .sol extension indicates that it is a Solidity file.
 
 
-On the first line of your AgroCelo.sol lets include a statement that specifies the license under which the code is being released.
+On the first line of your AgroCelo.sol let's include a statement that specifies the license under which the code is being released.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -96,9 +96,9 @@ pragma solidity >=0.7.0 <0.9.0;
 
 This license governs how the code can be used, and it is important to ensure that the correct license is used to avoid any legal issues. A resource such as SPDX can be used to help identify a suitable license.
 
-Using the pragma keyword, you specify the Solidity version that you want the compiler to use. In this case, it should be higher than or seven and lower than nine. It is important to specify the version of the compiler because Solidity changes constantly.
+Using the pragma keyword, you specify the Solidity version that you want the compiler to use. In this case, it should be higher than or equal to seven and lower than or equal to nine. It is important to specify the version of the compiler because Solidity changes constantly.
 
-Next up, we define an `IERC20Token` interface which enables us to interact with the celo stablecoin (cUSD). 
+Next up, we define an `IERC20Token` interface which enables us to interact with the Celo USD stablecoin (cUSD). 
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -118,13 +118,13 @@ interface IERC20Token {
 }
 ```
 
-ERC-20 tokens are a widely-used standard for creating digital assets on the Ethereum blockchain, and cUSD is one of them.
+ERC-20 tokens are a widely-used standard for creating digital assets on the Ethereum blockchain, and the cUSD is one of them.
 
-These tokens have pre-defined functions and events that can be easily used in contracts, and do not require any additional implementation. For example, you will be using the ERC-20 token's interface to interact with it, so that your contract can communicate with the token.
+These tokens have pre-defined functions and events that can be easily used in contracts and do not require any additional implementation. For example, you will be using the ERC-20 token's interface to interact with it, so that your contract can communicate with the token.
 
 You can find more information on how to use these functions and events in the Celo **[documentation](https://docs.celo.org/developer-guide/celo-for-eth-devs)**. The documentation also provides more details on how to interact with ERC-20 tokens and how to use them with the Celo network.
 
-After defining our `IERC20Token` interface`, we define our contract with the keyword contract and give it a name. which in our case we gave it AgroCelo. You can give it any name but ensure its descriptive.
+After defining our `IERC20Token` interface, we define our contract with the keyword contract and give it a name. In our case, we used `AgroCelo` as our name. You can give it any name but ensure it's descriptive.
 
 ```solidity
 contract AgroCelo{
@@ -132,13 +132,13 @@ contract AgroCelo{
     address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
 ```
 
-In the next line, you define a state variable listedSeedLength, this is going to keep track of the number of seeds listed on the blockchain and also in storing `seedInformation`. It is of a `uint` type which means it can only store integer values. [(Learn more about data types in solidity)](https://docs.soliditylang.org/en/latest/types.html).
+In the next line, you define a state variable named `listedSeedLength`, this is going to keep track of the number of seeds listed on the blockchain and also in storing `seedInformation`. It is of a `uint` type which means it can only store unsigned integer values. [(Learn more about data types in solidity)](https://docs.soliditylang.org/en/latest/types.html).
 
-We also define the visibility of our variable to `internal` which means it cannot be accessed from external smart contracts or addresses and can only be modified within the smart contract. ([Learn more about visiblity](https://docs.soliditylang.org/en/latest/contracts.html#visibility-and-getters))
+We also define the visibility of our variable as `internal` which means it cannot be accessed from external smart contracts or addresses and can only be modified within the smart contract. ([Learn more about visiblity](https://docs.soliditylang.org/en/latest/contracts.html#visibility-and-getters))
 
 Next, To interact with the cUSD ERC-20 token on the Celo alfajores test network, you need to know the address of the token.
 
-After defining the single variables used in the contract, we need  to create a `model` for our seed called `SeedInformation` which you can give it your own name if you wish. This model will take the basic details about a seed to be listed on the blockchain.
+After defining the single variables used in the contract, we need to create a `model` for our seed called `SeedInformation` which you can give your own name if you wish. This model will take the basic details about a seed to be listed on the blockchain.
 
 ```solidity
 // Ceating a struct to store seed details.
@@ -156,15 +156,15 @@ After defining the single variables used in the contract, we need  to create a `
 To do this, you would require a struct data type with the keyword `struct` and give it multiple properties. ([Learn about structs here](https://docs.soliditylang.org/en/latest/types.html#structs))
 
 For this tutorial, these would be the variables that you would store in the struct:
-1. owner - This would store the address of the owner of a particular seed. It is of the address type
-2. seedName - This stores the name of the seed. it is of type string.
-3. seedImgUrl - This stores the image url of the seed, it is of type string.
-4. seedDetails - This stores the description of the seed, it is of type string.
-5. seedLocation - This stores the location of the seeed, it is of type string.
-6. price - This stores the price of the seed. It is a number so its of type uint.
-7. email - This stores the email of the seller of that seed, it is of type string.
+1. `owner` - This would store the address of the owner of a particular seed. It is of the `address` type
+2. `seedName` - This stores the name of the seed. it is of type `string`.
+3. `seedImgUrl` - This stores the image URL of the seed, it is of type `string`.
+4. `seedDetails` - This stores the description of the seed, it is of type `string`.
+5. `seedLocation` - This stores the location of the seed, it is of type `string`.
+6. `price` - This stores the price of the seed. It is a number so it's of type `uint`.
+7. `email` - This stores the email of the seller of that seed, it is of type `string`.
 
-next we would create another model called PurchasedSeedInfo. This model will be used later by a map to store seeds being purchased.
+Next, we would create another model called PurchasedSeedInfo. This model will be used later by a map to store seeds being purchased.
 
 ```solidity
 // creating a struct to store purchased seed details.
@@ -176,34 +176,34 @@ struct PurchasedSeedInfo {
         uint price;
         string email;
     }
-````
-the variables used in the above struct are:
+```
+The variables used in the above struct are:
 
-1. purchasedFrom - its of type address. It is used to store the address of the owner of that seed.
-2. seedName - it is of type string, it stores the name of the seed.
-3. seedImgUrl - it is of type string, it stores the image url of the seed.
-4. seedDetails - it is of type string, it stores the description of the seed.
-5. seedLocation - it is of type string, it stores the location of the seed.
-6. price - it is of type uint since we are storing a number. It stores the price of the seed. Its a number so its of type uint.
-7. email - it is of type string, it stores the email of the seller of that seed.
+1. `purchasedFrom` - it is of type `address`. It is used to store the address of the owner of that seed.
+2. `seedName` - it is of type `string`, it stores the name of the seed.
+3. `seedImgUrl` - it is of type `string`, it stores the image URL of the seed.
+4. `seedDetails` - it is of type `string`, it stores the description of the seed.
+5. `seedLocation` - it is of type `string`, it stores the location of the seed.
+6. `price` - it is of type `uint` since we are storing the price of the seed.
+7. `email` - it is of type `string`, it stores the email of the seller of that seed.
 
-After creating the two models of our seed, we would create a map to store the `SeedInformation` model and also the `PurchasedSeedInfo` model. 
+After creating the two models of our seed, we would create a mapping to store the `SeedInformation` model and also the `PurchasedSeedInfo` model. 
 
 ```solidity
-//map used to store listed seeds.
+    //mapping used to store listed seeds.
     mapping (uint => SeedInformation) internal listedSeeds;
 
-    //map used to store seeds purchased.
+    //mapping used to store seeds purchased.
     mapping(address => PurchasedSeedInfo[]) internal purchasedSeeds;
 
 ```
 
-To handle multiple seeds, a mapping is needed where you can access the value of a seed through its key. Just like dictionaries in python or objects in Javascript.
+To handle multiple seeds, a mapping is needed where you can access the value of a seed through its key. Just like dictionaries in Python or objects in Javascript.
 
 To create a mapping, you use the keyword `mapping` and assign a key type to a value type. In this case, your key would be an integer and the value would be the struct `SeedInformation` we just created.
 
 
-The second mapping stores the `PurchasedSeedInfo` model which is all seeds purchased by a particular buyer. This time the mapping method uses the address of the buyer as it's key to store all seed purchased by that particular buyer in an array.
+The second mapping stores the `PurchasedSeedInfo` model which is all seeds purchased by a particular buyer. This time the mapping method uses the address of the buyer as its key to store all seeds purchased by that particular buyer in an array.
 
 In the next section, you will define a function to add the seed to the smart contract called `listSeed`.
 
@@ -231,23 +231,23 @@ In the next section, you will define a function to add the seed to the smart con
      listedSeedLength++;
 }
 ```
-The function includes parameters names and its type. We use the underscore in the name of the parameters to differentiate it from the struct value we are setting.  The function has its visibilty type set to public.
+The function includes parameter names and its type. We use the underscore in the name of the parameters to differentiate it from the struct value we are setting.  The function has its visibility type set to `public`.
 
-Next we use the `require` method to ensure that all fields that the user will fill when listing a seed in the fronted should not be empty. 
+Next, we use the `require` method to ensure that all fields that the user will fill when listing a seed in the front end should not be empty. 
 
-The require method which takes two parameters: 
+The `require` method takes two parameters: 
   - The condition 
   - The error message 
 
 Next, we associate the key `listedSeedLength` with a new `SeedInformaition` structure in the `listedSeeds` mapping.
 
-The first field of the struct is the address of the owner who can receive payments. The msg.sender function returns the address of the entity that initiated the call and is capable of receiving payments. This address will be stored as the owner's address.
+The first field of the `struct` is the address of the `owner` who can receive payments. The `msg.sender` function returns the address of the entity that initiated the call and is capable of receiving payments. This address will be stored as the owner's address.
 You also need to assign values to the other variables using the provided parameters.
 
-After that, we are going to increment the listedSeedLength by 1 so as to avoid listing a seed with the same id. 
+After that, we are going to increment the `listedSeedLength` variable by 1 so as to avoid overwriting the previous listing of a seed. 
 
 
-Up next we are going to create a function that will allow us read a listed seed when a valid index or id of that seed is passed as a parameter.
+Up next we are going to create a function that will allow us to read a listed seed when a valid index or id of that seed is passed as a parameter.
 
 ```solidity
 // Function used to fetch a lised seed by its id.
@@ -274,44 +274,43 @@ Up next we are going to create a function that will allow us read a listed seed 
     }
 ```
 
-This function will carry a parameter of _index to be able to get a particular seed alias. You also need to specify the variables you will return with the function. In this case, it would be a tuple corresponding to the variables declared in the struct. 
-The function will return the address of the owner, seedName, seedImgUrl, seedDetails, seedLocation, price and email address of the owner. 
+This function will carry a parameter of `_index` to be able to retrieve the state of a particular seed. You also need to specify the variables you will return in the function. In this case, it would be a tuple corresponding to the variables declared in the struct. 
+The function will return the address of the `owner`, `seedName`, `seedImgUrl`, `seedDetails`, `seedLocation`, `price`, and `email address` of the owner. 
 
 
-Up next, we are going to create a function called `buySeed` to enable users purchase a seed on the smart contract. 
+Up next, we are going to create a function called `buySeed` to enable users to purchase a seed on the smart contract. 
 
 ```solidity
-    function buySeed(uint _index, address _owner, string memory _seedName, string memory _seedImgUrl,  uint _price, string memory _email) public payable  {
-        require(_price > 0, "Price should be greater than 0");
-        require(listedSeeds[_index].owner != msg.sender, "you are already an owner of this seed");
-        require(
-          IERC20Token(cUsdTokenAddress).transferFrom(
-            msg.sender,
-            listedSeeds[_index].owner,
-            listedSeeds[_index].price
-          ),
-          "Transfer failed."
-        );
-        storePurchasedSeeds(_owner, _seedName, _seedImgUrl, _price, _email);
-    }
+  // function used to purchase a seed by another farmer.
+  function buySeed(uint _index) public payable  {
+          require(listedSeeds[_index].owner != msg.sender, "you are already an owner of this seed");
+          require(
+            IERC20Token(cUsdTokenAddress).transferFrom(
+              msg.sender,
+              listedSeeds[_index].owner,
+              listedSeeds[_index].price
+            ),
+            "Transfer failed."
+          );
+          storePurchasedSeeds(listedSeeds[_index].owner, listedSeeds[_index].seedName, listedSeeds[_index].seedImgUrl, listedSeeds[_index].price, listedSeeds[_index].email);
+      }
+      }
 
 ```
 
-The "buySeed" function, which is public and payable, takes the _index, _owner, _seedName, seedImgUrl, _price, _emaiil and their respective types as parameter.
+The `buySeed` function, which is `public` and `payable`, takes an `index` as a parameter.
 
-It will have three require methods. 
+It will have two `require` statements as validation checks. 
 
-The first require method checks if the price that is being passed is greater than 0. If the condition is true it will move to the next require method. If the condition is false, it will throw an error message: `"Price should be greater than 0"`.
+The first `require` method ensures that the buyer of that seed should not be the same as the owner. If it is false, it throws an error saying "you are already an owner of this seed".
 
-The second require method ensures that the buyer of that seed should not be the same as the seller. If it is false, it trows an error saying "you are already an owner of this seed".
+The second `require` method is to ensure that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored cUSD address to call the transferFrom method to transfer cUSD.
 
-The third require method is to ensure that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored address to call the transferFrom method to transfer cUSD.
+The first parameter is the address of the `sender`, accessed using the `msg.sender` method, the second parameter is the recipient of the transaction, which is the `owner` of the `seed` at the given index, and the final parameter is the `price` of the seed at the given index. 
 
-The first parameter is the address of the sender, accessed using the msg.sender method, the second parameter is the recipient of the transaction, which is the owner of the car at the given index, and the final parameter is the price of the seed at the given index. 
+If the transaction is successful, it calls the `storePurchasedSeeds` function which will be discussed later as we proceed, else it throws an error message saying "Transfer failed"
 
-If the transaction is successful, it calls the `storePurchasedSeeds` function which will be discussed later as we proceed. else it throws an error message saying "Transfer failed"
-
-Up next we create a function called getPurchasedSeeds to fetch the list of all seeds purchased by a user. 
+Up next, we create a function called `getPurchasedSeeds` to fetch the list of all seeds purchased by a user. 
 
 ```solidity
 function getPurchasedSeeds() public view returns (PurchasedSeedInfo[] memory) {
@@ -320,22 +319,22 @@ function getPurchasedSeeds() public view returns (PurchasedSeedInfo[] memory) {
 
 ``` 
 
-The function has a visibility type of internal because we don't wnat it to be accessed outside of our contract. It also uses the view keyword since we are not modifying anything and returns an array which is the `PurchasedseedInfo`.
+The function has a visibility type of `public` and also uses the `view` keyword since we only want to read the contract's state and returns an array of seeds of type `PurchasedseedInfo`.
 
 
-Next we are going to create the `storePurchasedSeeds` function which was called in the `buySeed` function. It stores the seeds purchased by a user.
+Next, we are going to create the `storePurchasedSeeds` function which was called in the `buySeed` function. It stores the seeds purchased by a user.
 
 ```solidity
 function storePurchasedSeeds(address _owner,
- string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) public {
+ string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) internal {
     purchasedSeeds[msg.sender].push(PurchasedSeedInfo({purchasedFrom : _owner,
     seedName : _seedName, price : _price, email : _email, seedImgUrl : _seedImgUrl, timeStamp : block.timestamp }));
 }
 ``` 
-The function accepts parameters such as _owner, _seedName, _seedImgUrl, _price, _email and their various types. It uses the address of the buyer as its key and stores the information provided in an array.
+The function accepts parameters such as `_owner`, `_seedName`, `_seedImgUrl`, `_price`, `_email`, and their respective types. It uses the address of the `buyer` as its key and stores the information provided in an array.
 
 
-next we are going to create a public function called `getListedSeedLength` which returns an int value. The function returns the length of seeds created on the blockchain.
+Next, we are going to create a `public` function called `getListedSeedLength` which returns an int value. The function returns the length of seeds created on the blockchain.
 
 ```solidity
 function getListedSeedLength() public view returns (uint) {
@@ -344,7 +343,7 @@ function getListedSeedLength() public view returns (uint) {
 ```
 
 
-Here is the full code:
+Here is the full code of our smart contract:
 
 
 ```solidity
@@ -437,7 +436,7 @@ contract AgroCelo{
 
 
 // function used to purchase a seed by another farmer.
-function buySeed(uint _index, address _owner, string memory _seedName, string memory _seedImgUrl,  uint _price, string memory _email) public payable  {
+function buySeed(uint _index) public payable  {
         require(listedSeeds[_index].owner != msg.sender, "you are already an owner of this seed");
         require(
           IERC20Token(cUsdTokenAddress).transferFrom(
@@ -447,7 +446,7 @@ function buySeed(uint _index, address _owner, string memory _seedName, string me
           ),
           "Transfer failed."
         );
-        storePurchasedSeeds(_owner, _seedName, _seedImgUrl, _price, _email);
+        storePurchasedSeeds(listedSeeds[_index].owner, listedSeeds[_index].seedName, listedSeeds[_index].seedImgUrl, listedSeeds[_index].price, listedSeeds[_index].email);
     }
 
 // function used to fetch seeds purchased already by you.
@@ -458,7 +457,7 @@ function getPurchasedSeeds() public view returns (PurchasedSeedInfo[] memory) {
 
 // function used to store purchase seed by a particular owner.
 function storePurchasedSeeds(address _owner,
- string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) public {
+ string memory _seedName, string memory _seedImgUrl, uint _price, string memory _email) internal {
     purchasedSeeds[msg.sender].push(PurchasedSeedInfo({purchasedFrom : _owner,
     seedName : _seedName, price : _price, email : _email, seedImgUrl : _seedImgUrl, timeStamp : block.timestamp }));
 }
@@ -476,71 +475,71 @@ function storePurchasedSeeds(address _owner,
 
 ## Contract Deployment
 
-To deploy the contract, we would need:
-1. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from Google Chrome store.
+To deploy the contract, we would need to:
+1. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from the Google Chrome store.
 
 
-2. Create a wallet and ensure you store your key phrase in a very safe place when creating your wallet to avoid permanently losing your funds below is a break down on how to create a wallet:
+2. Create a wallet and ensure you store your key phrase in a very safe place when creating your wallet to avoid permanently losing your funds below is a breakdown of how to create a wallet:
 
 ![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_create_wallet.gif)
 
 
-3. Get the Celo token for the alfajores testnet [here](https://celo.org/developers/faucet) : below is a breakdown on how to do it.
+3. Get the Celo token for the Alfajores testnet [here](https://celo.org/developers/faucet): below is a breakdown of how to do it.
 
 ![image](images/celo_get_token_from_faucet.gif)
 
 
-4. Install the Celo remix plugin and deploy your contract. Below is the breakdown. 
+4. Install the Celo Remix plugin and deploy your contract. Below is the breakdown. 
 
 ![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_install_remix_plugin_and_deploy_contract.gif)
 
 In the gif above, replace `marketplace.sol` with `AgroCelo.sol`
 
-Congratulations! you have just deployed you first smart contract on the Celo blockchain.
+Congratulations! you have just deployed your first smart contract on the Celo blockchain.
 
 
 ## Frontend Development
 
-Going futher we will be building our frontend to interact with our smart contract that is being deployed on the Celo blockchain. You need to make sure you have installed Node.js 10 or higher version.
+Going further we will be building our front end to interact with our smart contract that is being deployed on the Celo blockchain. You need to make sure that you have installed Node.js 10 or higher version.
 
-Next we need to open a command line interface in the folder or directory where you want to build the frontend and run the code below:
+Next, we need to open a command line interface in the folder or directory where you want to build the front end and run the code below:
 
-```js
+```sh
 git clone https://github.com/dacadeorg/celo-boilerplate-web-dapp
 ```
-This will create a folder called celo-boilerplate-web-dapp. The folder contains neccessary setup files and folders needed to build our frontend and connect it with our smart contract. The three main folder you should watch out for is the: 
+This will create a folder called `celo-boilerplate-web-dapp`. The folder contains the necessary setup files and folders needed to build our front end and connect it with our smart contract. The three main folders you should watch out for is the: 
 `contract` folder which contains:
 - erc20.abi.json file
 - marketplace.abi.json file
 - marketplace.sol file
 
-`Public` folder which contain the index.html file and the `src` folder which contains the main.js file.
+`Public` folder which contains the `index.html` file and the `src` folder which contains the `main.js` file.
 
-Next we move to our root directory on the same command line interface by run this code
+Next, we move to the root directory of the cloned repository on the same command line interface by running this code
 
-```js
+```sh
 cd celo-boilerplate-web-dapp
 ``` 
-The code change the directory in the command line interface to the root directory inorder for us to install the dependences that comes with the boilerplate.
+The code changes the directory in the command line interface to the root directory for us to install the dependencies that comes with the boilerplate.
 
 To install all the dependencies we type the code below and hit enter.
 
-```js
+```sh
 npm install
 ```
-Installing of all dependencies might take a while. After the dependencies have been installed, we can start up the server by running the code:
+Installing all dependencies might take a while. After the dependencies have been installed, we can start up the server by running the code:
 
-```js
+```sh
 npm run dev
 ```
-Your project should be running here http://localhost:3000/ and a browser window should pop up showwing "hello world".
+Your project should be running on **http://localhost:3000/** and a browser window should pop up showing "hello world".
 
 
-After starting the server we need to open the celo-boilerplate-web-dapp folder which is the root folder in an IDE you can use any IDE for it, but preferably you use vscode.
+After starting the server we need to open the `celo-boilerplate-web-dapp` folder which is the root folder in our IDE, in our case, the VSCode IDE.
 
 ## The HTML part of the Dapp
-In the next step of the tutorial, you will begin building the foundation of your decentralized application (DApp) using HTML.
-To do this we need to go to the root directory of the folder and find the src folder,  open the folder and click on the index.html file in our IDE. clear all that it written and type this: 
+In the next step of the tutorial, you will begin building the foundation of your decentralized application (dApp) using HTML.
+To do this we need to go to the root directory of our project and find the `src` folder,  open the folder, and click on the `index.html` file in our IDE. Clear all that is written and type this: 
 
 
 ```html
@@ -551,9 +550,9 @@ To do this we need to go to the root directory of the folder and find the src fo
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 ```
-The code above declares the document type, add an HTML tag, create a head element, and add meta tags.
+The code above declares the document type, adds an HTML tag, creates a head element, and adds meta tags.
 
-Next, we will be importing some external stylesheets. we will use bootstrap, a popular front-end library that allows you to create elegant responsive websites very fast. You can quickly choose from bootstrap components like buttons or cards and customize them to your needs.
+Next, we will be importing some external stylesheets. we will use Bootstrap, a popular front-end library that allows you to create elegant responsive websites very fast. You can quickly choose from Bootstrap components like buttons or cards and customize them to your needs.
 
 ```html
   <!-- CSS -->
@@ -570,7 +569,7 @@ Next, we will be importing some external stylesheets. we will use bootstrap, a p
     />
 ```
 
-after importing the stylesheet we will also be needing the bootstrap icons which can be imported using external import with the code below:
+after importing the stylesheets we will also be needing the Bootstrap icons which can be imported using an external import with the code below:
 
 ```html
  <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -580,7 +579,7 @@ after importing the stylesheet we will also be needing the bootstrap icons which
   />
 ```
 
-Up next, we would importing the font as our main font by using the style tag to style the font type and also setting the title of the page with the title tag. Here we set the title to AgroCelo but you can set it to any name you want as long as it is descriptive, and we close the head tag.
+Up next, we would be importing the font as our main font by using the style tag to style the font type and also setting the title of the page with the title tag. Here we set the title to `AgroCelo` but you can set it to any name you want as long as it is descriptive, and we close the head tag.
 
 ```html
 <style>
@@ -592,9 +591,9 @@ Up next, we would importing the font as our main font by using the style tag to 
     </head>
 ```
 
-up next we would be defining our body tag where we would create our notification bar, navigation bar, hero, modals and forms. lets get started.
+Up next we would be defining our body tag where we would create our notification bar, navigation bar, hero, modals, and forms. let's get started.
 
-For the notification bar we write this code:
+For the notification bar, we write this code:
 
 ```html
 <body>
@@ -606,10 +605,10 @@ For the notification bar we write this code:
     </div>
 ```
 
-The div has the class `alert alert-warning` which will make text appear in an alert box. The span element has the id notification, that you will use to select the div and insert the text that you want to display in our Javascript code.
+The div has the class `alert alert-warning` which will make the text appear in an alert box. The span element has the id `notification`, which you will use to select the div and insert the text that you want to display in our Javascript code.
 
 
-Up next is the navigation bar which is used to show our app name and the amount of cUSD we currently have. The amount of cUSD we be dynamic as the main data will be gotten from our javascript file.
+Up next is the navigation bar which is used to show our app name and the amount of cUSD we currently have. The amount of cUSD will be dynamic as the main data will be retrieved from our Javascript file.
 
 ```html
  <!-- Navbar starts here -->
@@ -625,7 +624,7 @@ Up next is the navigation bar which is used to show our app name and the amount 
  <!-- Navbar ends here -->
 ``` 
 
-The navbar has two spans one which shows the name of our app and the secound which shows the amount of cUSD we have. The second span has an id of "balance" which will be later needed in our javascript file to render the actual celo balance a user have.
+The navbar has two spans one which shows the name of our app and the amount of cUSD we have. The second span has an id of "balance" which will be later needed in our Javascript file to render the actual cUSD balance a user has.
 
 Up next we will be creating our hero where which is a background that tells the user what the app does.
 
@@ -651,10 +650,10 @@ Up next we will be creating our hero where which is a background that tells the 
 <br />
 ``` 
 
-The hero is divided into two columns by wrapping it with a div which has class of row. The first column contains  a div with various bootstrap style which has a h4 tag that explains what the app does and a button which will  pop up a modal where users can fill a form and interact with our smart contract to list a seed on the Celo blockchain. The second column contains and image tag where the source of the image is gotten from the url.
+The hero is divided into two columns by wrapping it with a div that has the class of `row`. The first column contains a div with various Bootstrap styles which has an `h4` tag that explains what the app does and a button that will pop up a modal where users can fill a form and interact with our smart contract to list a seed on the Celo blockchain. The second column contains an image tag where the source of the image is gotten from the URL.
 
 
-Up next we will be creating toggle buttons that will enable the users toggle the view between the general seed listed on the market and the ones they already bought.
+Up next we will be creating toggle buttons that will enable the users to toggle the view between the general seed listed on the market and the ones they already bought.
 
 ```html
 <!-- divs showing buttons used in switching views -->
@@ -671,9 +670,9 @@ Up next we will be creating toggle buttons that will enable the users toggle the
 </div>
 <!-- end of div -->
 ```
-in our code, we used boostrap nav pills to create two buttons one with id set to "productTab" and the other set to "purchasedTab". The reason for the id's is so that we can use or target the buttons in our javascript code, to enable us add and remove styles on the web page.
+In our code, we used Bootstrap `nav pills` class to create two buttons one with id set to "productTab" and the other set to "purchasedTab". The reason for the ids is so that we can use or target the buttons in our Javascript code, to enable us to add and remove styles on the web page.
 
-Up next we will be creating a div that will show all seeds listed on the smartcontract:
+Up next we will be creating a div that will show all seeds listed on the smart contract:
 
 ```html
    <!-- Start of container showing listed seeds -->
@@ -696,9 +695,9 @@ Up next we will be creating a div that will show all seeds listed on the smartco
       </div>
 <!-- End of container -->
 ``` 
-The main tag contains two id's one set to "marketplace" which will be used later on in our javascript code to target and render the seeds listed on the blockchain. While the other is set to "purchasedProduct" which we would also use later in our javascript code to render seeds that is being purchased by the user.
+The main tag contains two ids one set to "marketplace" which will be used later on in our Javascript code to target and render the seeds listed on the blockchain. While the other is set to "purchasedProduct" which we would also use later in our Javascript code to render seeds that are being purchased by the user.
 
-up next is creating our first modal. This modal is used to show the full details of a particular seed when a the user clicks the `view More Details` button of a listed seed. The `modal-body` has an id of `modalHeader` the id is what we will use to render the template that will be coming from our Javascript file. Below is the code:
+Up next is the creation of our first modal. This modal is used to show the full details of a particular seed when a user clicks the `view More Details` button of a listed seed. The `modal-body` has an id of `modalHeader` the id is what we will use to render the template that will be coming from our Javascript file. Below is the code:
 
 ```html
 <!-- start of modal that shows seed details -->
@@ -728,7 +727,7 @@ up next is creating our first modal. This modal is used to show the full details
           </div>
 <!-- end of modal -->
 ```
-Up next is another modal which will be use to add or list a seed to the celo blockchain.
+Up next is another modal that will be use to add or list a seed to the smart contract.
 
 ```html
 <!-- start of modal to list a seed -->
@@ -828,9 +827,9 @@ Up next is another modal which will be use to add or list a seed to the celo blo
 
 ```
 
-Inside the modals are html forms, a close and a Submit button. The form will be use to fill the neccesary informations needed to list a seed on the Celo blockchain, while the Submit button will interact with our smart contract to submit the details of the form. The close button closes the modal.
+Inside the modals are HTML forms, a `close` and a `submit` buttons. The form will be used to fill in the necessary information needed to list a seed in our smart contract, while the submit button will interact with our smart contract to submit the details of the form. The close button closes the modal.
 
-Finally, we are going to add a bootstrap JS library and a library called blockies, that we are going to use to visualise blockchain addresses. Then we close the body and html tag.
+Finally, we are going to add the Bootstrap JS library and a library called `blockies`, which we are going to use to visualize blockchain addresses. Then we close the body and HTML tag.
 
 ```html
 <script
@@ -843,7 +842,7 @@ Finally, we are going to add a bootstrap JS library and a library called blockie
 </html>
 ```
 
-Here is the full code for the html part:
+Here is the full code for the HTML part of our tutorial:
 
 ```html
 <!DOCTYPE html>
@@ -1115,18 +1114,18 @@ Here is the full code for the html part:
   </body>
 </html>
 ```
-## Reading and Writing on Our SmartContract
-Before going into the main.js file,  we need to be able to read and write from our smart contract in our Javascript file and to be able to do that we need to go to Remix IDE and where we already wrote our smart contract, compile it and deploy on the celo network.
+## Reading and Writing on Our Smart Contract
+Before going into the `main.js` file,  we need to be able to read and write from our smart contract in our Javascript file, and to be able to do that we need to go to `Remix IDE` where we already wrote our smart contract to compile it and deploy on the Celo Alfajores network.
 
-in order to interact with your smart contract that is deployed in bytecode, you need an interface, the ABI (Application Binary Interface), so that the contractKit in our main.js can understand the bytecode. The ABI allows you to call functions and read data (Learn more about the ABI).
+To interact with our smart contract that is deployed in bytecode, we need an interface, the ABI (Application Binary Interface), so that the `contractKit` in our `main.js` file can understand the bytecode. The ABI allows you to call functions and read data [Learn more about the ABI](https://docs.soliditylang.org/en/develop/abi-spec.html)..
 
-When you compile your contract in Remix, Remix also creates the ABI in the form of a JSON for your contract. Copy the JSON and save it into the marketplace.abi.json file of the contracts folder in your Celo boilerplate.
+When you compile your contract in Remix, Remix also creates the ABI in the form of a JSON object that contains actions that allow us to interact with our smart contract. Click on the ABI icon to copy the Abi and save it into the `marketplace.abi.json` file of the contracts folder in our project's directory.
 
-After that you need to copy the smart contract code and paste in your marketplace.js. When all this is done we can now move  to our main.js but take note of the address in which your contract is being deployed to because we will need it in our main.js file to interact with the smart contract.
+After that, you need to copy the smart contract code and paste it into your `marketplace.sol` file. When all this is done we can now move to our `main.js` file but take note of the address to which your contract is being deployed because we will need it in our `main.js` file to interact with the smart contract.
 
 
 ## main.js
-The main.js file is file that enable us interact with our smart contract from our frontend. In the beginning of the main.js file, necessary libraries and files are imported.
+The `main.js file` is the file that enables us to interact with our smart contract from our front end. At the beginning of the `main.js` file, the necessary libraries and files are imported.
 
 ```js
 import Web3 from "web3"
@@ -1140,42 +1139,40 @@ const MPContractAddress = "0x93C2eFb0Bc6d5f09D37af265B9B78c95e7dC69E4" // deploy
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" //Erc20 contract address
 
 ```
-In the above code we imported Web from web3. web3.js is a  popular collection of libraries also used for ethereum, that allows you to get access to a web3 object and interact with node's JSON RPC API .
+In the above code, we imported the `Web3` object from the web3 library. `Web3.js` is a  popular collection of libraries also used for Ethereum, that allows you to get access to a web3 object and interact with the node's JSON RPC API.
 
-Then we import newKitFromWeb3 from the "@celo/contractkit". The contractkit library enables us  to interact with the celo blockchain.
+Then we import `newKitFromWeb3` from the "@celo/contractkit". The contractkit library enables us to interact with the Celo blockchain.
 
 
-In order to interact with our smart contract that is deployed in bytecode, you need an interface, the ABI (Application Binary Interface), so that the contractKit can understand the bytecode. The ABI allows you to call functions and read data [Learn more about the ABI](https://docs.soliditylang.org/en/develop/abi-spec.html).
+To interact with our smart contract on our front end we need the ABI of our smart contract which we previously copied in the `marketplace.abi.json` file.
 
-For us to get our Abi, we need to compile our AgroCelo.sol on Remix and click on the ABI icon to copy the Abi, then, we need to go to our `celo-boiler-plate` project, open the contract folder, open the marketplace.abi.json file clear anything in that file and paste the current Abi we just copied and save. We also need to paste our smart contract code in the `marketplace.sol` file in our boilerplate and save.
+After following the steps above, we import the ABI by typing `import marketplaceAbi from "../contract/marketplace.abi.json"`.
 
-After following the steps above, we import the Abi by typing `import marketplaceAbi from "../contract/marketplace.abi.json"`.
+Celo's operations often deal with numbers that are too large for Javascript to handle. To handle these numbers, we will use the package `bignumber.js`.
 
-Celo's operations often deal with numbers that are too large for Javascript to handle. To handle these numbers, we will use bignumber.js.
+The `erc20Abi` enables us to interact with the cUSD token which we will use to make payments.
 
-The erc2-Abi enables us to interact with the ERC-20 interface. The ERC-20 interface The ERC20 interface is a standard API for tokens within smart contracts. It enables make payment with the Celo stablecoin which is cUSD.
-
-Next we will create a variable called `ERC20_DECIMALS` and set its value to 18. By default, the ERC20 interface uses 18 decimal places.
+Next, we will create a variable called `ERC20_DECIMALS` and set its value to 18. The cUSD uses 18 decimal places.
 
 The `MPContractAddress` is the address that is shown when we deploy our smart contract on the Celo network. On Remix, after the deployment of your contract, you will find the address to that contract which you need to interact with the functionality in your smart contract.
 
-Then we will create a variable called `cUSDContractAddress` for the cUSD contract address which gotten by default. All you have to do is to paste the address which is: `0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1` 
+Then we will create a variable called `cUSDContractAddress` for the cUSD contract address which is gotten by default. All you have to do is to paste the address which is: `0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1` 
 
 
-Going futher we will create three more global variable below:
+Going further we will create three more global variables below:
 
 ```js
 let kit //contractkit
 let contract // contract variable
 let listedSeeds = [] // array of listed seeds
 ```
-The kit is used to store the address of a user that is conneted with his/her celo wallet. Later on we will take a look on how it works.
+The `kit` variable is used to store the address of a user that is connected with his/her Celo wallet. Later on, we will take a look at how it works.
 
-The contract stores an instance of the marketplace contract once a user connects their Celo wallet, so you can interact with it.
+The `contract` variable stores an instance of the marketplace contract once a user connects their Celo wallet, so you can interact with it.
 
-The listedSeeds array stores the seeds that we will be listed on the blockchain soon.
+The `listedSeeds` array stores the seeds that will be listed on the blockchain soon.
 
-In order to store information in the kit and contract variables we need to create an asynchronous function called `connectCeloWallet` that allows a user to connect to the Celo Blockchain and read the balance of their account. The function will perform several checks and actions to ensure that the user has the necessary tools and permissions to interact with the Celo Blockchain.
+In order to store information in the `kit` and `contract` variables we need to create an asynchronous function called `connectCeloWallet` that allows a user to connect to the Celo Blockchain and read the balance of their account. The function will perform several checks and actions to ensure that the user has the necessary tools and permissions to interact with the Celo Blockchain.
 
 ```js
 //Connects the wallet gets the account and initializes the contract
@@ -1208,18 +1205,18 @@ const connectCeloWallet = async function () {
 
 The first step is to check if the user has the CeloExtensionWallet installed by checking if the "window.celo" object exists. If it does not exist, the function will use the console to inform the user that they need to install the wallet.
 
-If the "window.celo" object does exist, a notification will be sent to the user in the console to approve this DApp and try the window.celo.enable() function. This will open a pop-up dialogue in the UI that asks for the user's permission to connect the DApp to the CeloExtensionWallet.
+If the "window.celo" object does exist, a notification will be sent to the user in the console to approve this DApp and try the `window.celo.enable()` function. This will open a pop-up dialogue in the UI that asks for the user's permission to connect the dApp to the CeloExtensionWallet.
 
-If an error is caught during this process, the user would be informed that they must approve the dialogue to use the DApp.
+If an error is caught during this process, the user would be informed that they must approve the dialogue to use the dApp.
 
-After the user approves the DApp, create a web3 object using the window.celo object as the provider. This web3 object can then be used to create a new kit instance, which will be saved to the kit state. This kit instance will have the functionality to interact with the Celo Blockchain.
+After the user approves the dApp, create a web3 object using the `window.celo` object as the provider. This web3 object can then be used to create a new kit instance, which will be saved to the kit state. This kit instance will have the functionality to interact with the Celo Blockchain.
 
 You would then access the user's account by utilizing the web3 object and kit instance that have been created. 
 
-After creating the new kit instance, use the method kit.web3.eth.getAccounts() to get an array of the connected user's addresses. Use the first address from this array and set it as the default user address by using kit.defaultAccount. This will allow the address to be used globally in the DApp.
+After creating the new kit instance, use the method `kit.web3.eth.getAccounts()` to get an array of the connected user's addresses. Use the first address from this array and set it as the default user address by storing it in`kit.defaultAccount`. This will allow the address to be used globally in the dApp.
 
 
-Next we create a function called approve which will be used later to enable us get the user approval before making a transaction on the blockchain. It takes _price of the seed as a parameter. This function will be used later.
+Next, we create a function called `approve` which will be used later to enable us to get the user approval before making a transaction on the blockchain. It takes the `_price` of the seed as a parameter. This function will be used later.
 
 ```js
 async function approve(_price) {
@@ -1231,12 +1228,13 @@ async function approve(_price) {
   return result
 }
 ```
-In the approve function, we create a cUSD contract instance with the ABI and the contract address, cUSDContract, which enable us to call the cUSD contract method approve. You need to specify both the contract address that will be allowed to make transactions and the amount that it will be allowed to spend, i.e., the price of the seed.
+In the `approve` function, we create a cUSD contract instance with the ABI and the contract address, cUSDContract, which enables us to call the cUSD contract method `approve`. You need to specify both the contract address that will be allowed to make transactions and the amount that it will be allowed to spend, i.e., the price of the seed.
 
-Again, you also need to specify who is going to spend the cUSD token. In this case it's the address stored in kit.defaultAccount. It returns the result for error handling if there is.
+Again, you also need to specify the sender of the transaction. In this case, it's the address stored in `kit.defaultAccount`. It returns the result for error handling if there is one.
 
 
-Up next we create an asynchronous function called getBalance which we use in getting cUSD of the user and displaying it on the navbar we created in our html file.
+Up next we create an asynchronous function called getBalance which we use in getting the cUSD balance of the user and displaying it on the navbar we created in our HTML file.
+
 ```js
   // gets the balance of the connected account
 const getBalance = async function () {
@@ -1290,13 +1288,13 @@ const getListedSeeds = async function() {
 }
 ```
 
-Before retrieving the listed seeds, we need to know the number of seeds listed already to enable us iterate over them. To do that we start by calling the `contract.methods.getSeedLength().call()` method, which returns the number of seeds that are stored in the smart contract. This value is stored in the `listedSeedLength` variable.
+Before retrieving the listed seeds, we need to know the number of seeds listed already to enable us to iterate over them. To do that we start by calling the `contract.methods.getSeedLength().call()` method, which returns the number of seeds that are stored in the smart contract. This value is stored in the `listedSeedLength` variable.
 
-Next we will create an empty array called `_listedSeeds` that will be used to store the listed seed objects. Next, we loop throught each seeds, and for each seed, we create a promise by calling the `contract.methods.getListedSeedById(i).call()` to get the listed seed data. Resolve the promise with the  seed data and then push the seed object to your _listedSeeds array. Be aware that the price needs to be a bigNumber object so you can later make correct payments.
+Next, we will create an empty array called `_listedSeeds` that will be used to store the listed seed objects. Next, we loop through each seed, and for each seed, we create a promise by calling the `contract.methods.getListedSeedById(i).call()` to get the listed seed data. We then resolve the promise with the seed's data and then push the seed object to the `_listedSeeds` array. Be aware that the `price` needs to be a `bigNumber` object so we can use it later to make accurate payments.
 
-After the loop is finished, we wait for all promises in the `listedSeeds` array to be resolved by calling `await Promise.all(_listedSeeds)`, this will make sure that all the listed seeds have been retrieved before calling the renderProductTemplate function which will be created later. We use the `renderProductTemplate` function which we will create next to show the listedSeeds  on the web page.
+After the loop is finished, we wait for all promises in the `listedSeeds` array to be resolved by calling `await Promise.all(_listedSeeds)`, this will make sure that all the listed seeds have been retrieved before calling the `renderProductTemplate` function which will be created later. We use the `renderProductTemplate` function which we will create next to show the listedSeeds on the web page.
 
-Next is to create the renderProductTemplate function. In the renderProductTemplate function we get the id of the element in which we want to render the seeds in our case `marketplace`. Firstly we need to make it empty so as to avoid multiple rendering when the function is being called more than once. next we check if there is seed in the listSeeds array if it is true, we use the foreach loop to create a new div and set the productTemplate which we will discuss next to it and then we append the new div to the `marketplace`. 
+Next, we will create the `renderProductTemplate` function. In the `renderProductTemplate` function, we get the id of the element in which we want to render the seeds in our case the `marketplace`. Firstly we need to clear the DOM to prevent duplication of existing seeds that have already been rendered. Next, we check if there is a seed in the listSeeds array if it is true, we use the foreach loop to create a new div and set the productTemplate which we will discuss next to it and then we append the new div to the `marketplace`. 
 
 ```js
 // function used to render a html template of listed seeds.
@@ -1312,7 +1310,7 @@ function renderProductTemplate() {
 }
 ```
 
-Next lets create the productTemplate function. The productTemplate function returns an html element  and accept a parameter in our case called `seed`.
+Next, let's create the `productTemplate` function. The `productTemplate` function returns an HTML element  and accepts a parameter called `seed`.
 
 ```js
 // function that create a html template of listed seeds
@@ -1337,10 +1335,7 @@ function productTemplate(seed) {
 }
 ```
 
-Inside it should have a card which contains an image tag, an identiconTemplate function which collects user address and displays it as an icon in other to differentiate different users and three paragraphs. They should all receive an object value named seed.seedImgUrl seed.owner, seed.price, seed.Name. The seed.price has to be convert into beceause it uses BigNumber.
-
-
-Up next we would create the identiconTemplate function. It recieves a parameter of _address. 
+Inside it should have a card that contains an `image tag`, and an `identiconTemplate` function which collects a user address and displays it as an icon to differentiate different users and three paragraphs. They should all receive an object variable named `seed.seedImgUrl`, `seed.owner`, `seed.price`, and `seed.seedName`. The `seed.price` has to be converted into a `bigNumber`. 
 
 ```js
 // function  that creates an icon using the contract address of the owner
@@ -1364,9 +1359,9 @@ function identiconTemplate(_address) {
 }
 ```
 
-The function returns a div that has an image tag with its src set to the variable icon declared at the top inside the fuction.
+The function returns a div that has an image tag with its `src` set to the variable icon declared at the top inside the function.
 
-Next we create two function called notification() and notificationOff(). The notification() function  displays the alert element with the text in the parameter and a notificationOff stops showing the alert element. They will be used when recieving and resolving promise using the try and catch block in our code to display error or success messages.
+Next, we create two functions called `notification()` and `notificationOff()`. The `notification()` function displays the alert element with the text in the parameter and the `notificationOff()` function stops showing the alert element. They will be used when receiving and resolving promises using the try and catch block in our code to display error or success messages.
 
 ```js
 // function to create a notification bar
@@ -1381,7 +1376,7 @@ function notificationOff() {
   document.querySelector(".alert").style.display = "none"
 }
 ```
-Next we would be initializing some functions each time when the window load by using the function window.addEventListener(). It recieves two parameters (1) load (2) an asyn function that calls several functions.
+Next, we would be initializing some functions each time when the window loads by using the function `window.addEventListener()`. It receives two parameters (1) load and (2) an async function that calls several functions.
 
 ```js
 // initialization of functions when the window is loaded.
@@ -1393,9 +1388,9 @@ window.addEventListener("load", async () => {
   notificationOff()
   });
 ```
-The async function  calls the notification function with a loading message, display the user's balance, render all seed so the user can see them, and disable the notification div again once the DApp is loaded.
+The async function calls the notification function with a loading message, displays the user's balance, renders all seeds so the user can see them, and disables the notification div again once the dApp is loaded.
 
-Next would be collecting the values of our forms we created in our modal. Firstly we get the id of our modal button, then we add an event listener to check when the button is being clicked. Next we store the values in an array called params and we use the try block to call the contract.methods.listedSeed() with the params passed inside it, then we use the catch block to handle any error that might occur. If all is succesful, we call the notification, notificationOff and  getListedSeeds function. Below is the code: 
+Next would be collecting the values of the forms we created in our modal. Firstly we get the id of our modal button, then we add an event listener to check when the button is being clicked. Next, we store the values in an array called params and we use the try block to call the `contract.methods.listedSeed()` with the params passed inside it, then we use the catch block to handle any errors that might occur. If all is successful, we call the notification, notificationOff, and getListedSeeds functions. Below is the code: 
 
 ```js
 document
@@ -1427,10 +1422,10 @@ document
   })
 ```
 
-You start by creating a new BigNumber instance with the _price argument, and then it's shifting it by ERC20_DECIMALS, this is a way to represent the price in terms of smaller units. Then it's converting the value to a string and storing it in the "price" variable.
+You start by creating a new `BigNumber` instance with the `_price` argument, and then shifting it by the value stored in the `ERC20_DECIMALS` variable to convert it to `wei`.
 
 
-Next we would create a querySelector that target an id of marketpalce and checks for click events. This query selector enables us to display the details of a seed in a modal when the user clicks on  the view more details button:
+Next, we would create a querySelector that targets an id of `marketplace` and checks for click events. This query selector enables us to display the details of a seed in a modal when the user clicks on  the view more details button:
 
 ```js
 document.querySelector("#marketplace").addEventListener("click", async (e) => {
@@ -1444,11 +1439,12 @@ document.querySelector("#marketplace").addEventListener("click", async (e) => {
           myModal.show();
 
 ``` 
-We first of all check if the element clicked has a class name of `view` if it is true, we declare a variable called _id to get the id of the button click. The value of the _id gotten is what will be used to fetch the details of a seed by calling the  contract.methods.getListedSeedById(_id).call(); on the try block and storing the value on the local variable called listedSeed declared in the function.
+We first of all check if the element clicked has a class name of `view` if it is true, we declare a variable called `_id` to get the id of the button click. The value of the _id acquired is what will be used to fetch the details of a seed by calling the `contract.methods.getListedSeedById(_id).call();` on the try block and storing the value on the local variable called `listedSeed` declared in the function.
 
-On the try block also create a variable called myModal which is used to control the modal with the id `addModal1` in our html file. Through it we got the myModal.show() which is used to pop up the modal when promise is recieved.
+On the try block also create a variable called `myModal` which is used to control the modal with the id `addModal1` in our HTML file. Through it, we got the `myModal.show()` which is used to pop up the modal when the promise is received.
 
-Futher more, let create the details of the modal;
+Further more, let's create the details of the modal
+
 ```js
 document.getElementById("modalHeader").innerHTML = `
 <div class="card">
@@ -1486,7 +1482,7 @@ document.getElementById("modalHeader").innerHTML = `
   `}
 ```
 
-Inside the modal we will create a div with class card and we insert the image tag with some paragraphs. the image tag contains the image of the seed while the paragraph contains the details of the seed according to their order when fetched from the smart contract. Inside the modal is a buy button that will enable us to purchase a seed. We will implement the functionality later.
+Inside the modal, we will create a div with the class `card` and insert the image tag with some paragraphs. the image tag contains the image of the seed while the paragraph contains the details of the seed according to their order when fetched from the smart contract. Inside the modal is a buy button that will enable us to purchase the seed. We will implement the functionality later.
 
 
 Still in our query selector is the catch block that handles any error that may occur when interacting with our smart contract.
@@ -1500,7 +1496,7 @@ Still in our query selector is the catch block that handles any error that may o
 })
 ```
 
-After the catch block might have handle the error by displaying it as a notification on the page, we remove the notification to for other elements to be visible.
+After the catch block might have handle the error by displaying it as a notification on the page, we remove the notification for other elements to be visible.
 
 Next, we would be creating the buy functionalilty which will enable us to buy seeds from a farmer.
 
@@ -1510,11 +1506,6 @@ document.querySelector("#addModal1").addEventListener("click", async (e) => {
 
       // declaring variables for the smartcontract parameters
       const index = e.target.id
-      var _price =  new BigNumber(listedSeeds[index].price)
-      var _seedName = listedSeeds[index].seedName
-      var _seedImgUrl = listedSeeds[index].seedImgUrl
-      var _email = listedSeeds[index].email
-      var _owner = listedSeeds[index].owner
 
       notification("⌛ Waiting for payment approval...")
 
@@ -1527,19 +1518,19 @@ document.querySelector("#addModal1").addEventListener("click", async (e) => {
 
 ```
 
-We start by using a query selector to target the id addModal1 which is the id of the modal that shows the details of a seed. In that modal is a buy button with a class name of "buyBtn". We use the if condition to ensure that the element that we clicked on should have a class name of `buyBtn` before executing the next line of instruction. 
+We start by using a query selector to target the id `addModal1` which is the id of the modal that shows the details of a seed. In that modal is a buy button with a class name of "buyBtn". We use the if condition to ensure that the element that we clicked on should have a class name of `buyBtn` before executing the next line of instruction. 
 
-In the next line of instruction we are going to create 6 variables. The first variable stores the id which is a numeric value of the targeted button,  while the rest of the variables gets the details of that seed in the global array according to the id passed.
+In the next line of instruction, we are going to create a variable that stores the id which is a numeric value of the targeted button.
 
-The next line pop  a notification to tell the user that their request is being processed after which we are going to use a try block to approve the price of the seed we intend to buy by calling the approve method and passing the price of the seed as its parameter.
+The next line pop  a notification to tell the user that their request is being processed after which we are going to use a try block to approve the price of the seed we intend to buy by calling the `approve` method and passing the price of the seed as its parameter.
 
 
-After payment is being approved we are going to display another notification let the user know that we are waiting for their confirmation. Then we are going to use a try block to call the buySeed function of our smart contract.
+After payment is being approved we are going to display another notification to let the user know that we are waiting for their confirmation. Then we are going to use a try block to call the `buySeed` function of our smart contract.
 ```js
 notification(`⌛ Awaiting payment for "${listedSeeds[index].seedName}"...`)
       try {
         const result = await contract.methods
-          .buySeed(index, _owner, _seedName, _seedImgUrl, _price, _email)
+          .buySeed(index)
           .send({ from: kit.defaultAccount })
         notification(`🎉 You successfully bought "${listedSeeds[index].seedName}".`)
         getListedSeeds()
@@ -1554,7 +1545,7 @@ notification(`⌛ Awaiting payment for "${listedSeeds[index].seedName}"...`)
   })
 ```
 
-The buySeed function contains parameter such as the index of the seed, owner, seed name, price and email and then it send the transaction. If it is successful, it notify the user and then call the getListedSeeds and getBalance function. If there is an error it will also alert the user the error. After everything is processed we are going to ensure that the notification is turned off by calling the notificationOff function.
+We pass the `index` variable as an argument in the `buySeed` function and then we send the transaction. If it is successful, it notifies the user and then call the `getListedSeeds` and `getBalance` function. If there is an error it will also alert the user about the error. After everything is processed we are going to ensure that the notification is turned off by calling the `notificationOff` function.
 
 Up next we are going to create a query selector that will target the tab id and checks for the button is being clicked. This buttons is what enables us to toggle between seed listed on the blockchain and seed bought buy the user.
 
@@ -1571,13 +1562,14 @@ document.querySelector("#tabs").addEventListener("click", async (e) => {
         notification(`⌛ Loading please wait ...`)
 ```
 
-The if condition is to check if the button click has a class of `showpurchased`. If it is true it will use the document.getElementById to add and remove class list from the element whose id is used. This will enable us to toggle the view between the seed listed and the seed purchased.
+The if condition is to check if the button click has a class of `showpurchased`. If it is true it will use the `document.getElementById` to add and remove classes found in the class list of the element retrieved. This will enable us to toggle the view between the seed listed and the seed purchased.
 
-Next we are going to create a variable called result, this will be used to store the seed purchased when we call the smart contract.
+Next we are going to create a variable called result which we will use to store the seed purchased when we call the smart contract.
 
-The notification function gives the user the impression that something is processing and they should wait for it.
+The `notification` function gives the user the impression that something is processing and they should wait for it.
 
 Up next we are going to create a try block that will fetch the seed purchased by that user.
+
 ```js
 try {
            result = await contract.methods.getPurchasedSeeds().call();
@@ -1594,10 +1586,11 @@ var convertToMilliseconds = timestamp * 1000;
 // create an object for it.
 var date = new Date(convertToMilliseconds);
 ```
-The try block firstly calls the getPurchasedSeeds from the smart contract and stores the promise in the result variable we created. notificationOff turns off the notification. After that we have to check if the result list is not empty. If true we get the innerHTML of the id  `purchasedProduct` and set it to be empty because we are going to render some html template in it using the forEach loop later on. Before rendering, we need to convert each timestamp that is fetch into a format that can understood by the user. 
+The try block firstly calls the `getPurchasedSeeds` from the smart contract and stores the promise in the `result` variable we previously created. We then call the `notificationOff` to turn off the notification. After that we have to check if the result list is not empty. If true we get the innerHTML of the id  `purchasedProduct` and set it to be empty because we are going to render some HTML template in it using the `forEach` loop later on. Before rendering, we need to convert each timestamp that is fetch into a format that can understood by the user. 
 
 
 Up next we create a template that will render the purchased seeds
+
 ```js
 //template that shows purchased seeds
                 document.getElementById(`purchasedProduct`).innerHTML +=
@@ -1644,10 +1637,10 @@ Up next we create a template that will render the purchased seeds
       } 
 ```  
 
-The template contain a card that is rendered in the purchasedProduct id. It contains various p tags with their neccessary informations,  and image tag to display the image and the identiconTemplate icon that shows the address of the user purchased from in form of an icon. the item promise is being used according to how it is arranged in the smart contract.
+The template contains a card that is rendered in the `purchasedProduct` id. It contains various p tags with their necessary information, an image tag to display the image, and the identiconTemplate icon that shows the address of the user purchased from in form of an icon. the item promise is being used according to how it is arranged in the smart contract.
 
 
-Next we are going to handle when the result is empty after the promise is being returned.
+Next, we are going to handle when the result is empty after the promise is returned.
 
 ```js
  else{
@@ -1663,11 +1656,11 @@ Next we are going to handle when the result is empty after the promise is being 
 
       }
 ```
-The innerHTML of the id purchaseProduct is replaced with the text "you haven't purchased any seed yet" and a catch block is used to handle errors and display them.
+The innerHTML of the id `purchaseProduct` is replaced with the text "you haven't purchased any seed yet" and a catch block is used to handle errors and display them.
 
-After all is resolve we are going to turn off the notifications and call the getListedSeeds function.
+After everything has been resolved we are going to turn off the notifications and call the `getListedSeeds` function.
 
-Next we going to handle the toggle button that shows the listed seeds.
+Next, we going to handle the toggle button that shows the listed seeds.
 
 ```js
 // toggles the view on the web page
@@ -1679,30 +1672,30 @@ Next we going to handle the toggle button that shows the listed seeds.
       }
 })
 ```
-We use the else if to check if the button clicked contain the class name `showproducts`. if it contains, we are going to remove and add some styles in the web page by using the .classList.add() function for add and .classList.remove() to remove a class.
+We use the else if to check if the button clicked contains the class name `showproducts`. if it evaluates to `true`, we are going to remove and add some styles to the web page by using the `.classList.add()` function for add and .classList.remove() to remove a class.
 
 ## Deployment on Github pages
 
-Up next we will be looking at how to deploy our app on github page. Before that we need to ensure that our app is working smoothly. After that you can build your DApp in the root directory command-line interface of our `celo-boilerplate-web-dapp`  with the command.
+Up next we will be looking at how to deploy our dApp on the GitHub page. Before that, we need to ensure that our app is working smoothly. After that, you can build your dApp in the root directory command-line interface of our `celo-boilerplate-web-dapp`  with the command.
 
-```js
+```sh
 npm run build
 ```
 After building it successfully, you should have an HTML and JS file inside the docs folder of your project.
 
 - Upload your project to a new GitHub repository.
 - Once inside your repository, click on settings and scroll down to a section called Pages.
-- Select the main branch and the docs folder as the source for your GitHub pages, click on save.
-- Create a custom domain name, click on save. Your domain name should appear at the top of the browser.
-- Click on visit site. It might take a minute or two before the site will be ready.
+- Select the main branch and the docs folder as the source for your GitHub pages, and click on save.
+- Create a custom domain name, and click on save. Your domain name should appear at the top of the browser.
+- Click on "visit site". It might take a minute or two before the site will be ready.
 
 ## Conclusion
 
-Congrats 🎉, you were able to build and deploy your fullstack dApp using Solidity and Javascript on the Celo blockchain.
+Congrats 🎉, you were able to build and deploy your full-stack dApp using Solidity and Javascript on the Celo blockchain.
 
 ## Next step
 
-You can challenge yourself by adding more functions to your smart contract and implement them using Javascript. You can also look at various celo smart contracts and see if you can build a dApp using javascript.
+You can challenge yourself by adding more functions to your smart contract and implementing them using Javascript. You can also look at various Celo smart contracts and see if you can build a dApp using Javascript.
 
 The source code of this project is hosted [here](https://github.com/SamsonAmos/AgroCelo1). You can use it as a source of reference to edit yours.
 
