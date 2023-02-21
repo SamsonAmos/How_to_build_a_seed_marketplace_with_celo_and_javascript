@@ -17,11 +17,11 @@ slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Ja
   * [Requirements](#requirements)
   * [Let us Begin](#let-us-begin)
   * [Smart Contract Development](#smart-contract-development)
-    + [Contract Deployment](#contract-deployment)
+  * [Contract Deployment](#contract-deployment)
   * [Frontend Development](#frontend-development)
     + [The HTML part of the Dapp](#the-html-part-of-the-dapp)
-    + [Reading and Writing on Our SmartContract](#reading-and-writing-on-our-smartContract)
-    + [main.js](#main)
+    + [Reading and Writing on Our Smart Contract](#reading-and-writing-on-our-smart-contract)
+    + [main.js](#mainjs)
   * [Deployment on Github pages](#deployment-on-github-pages)
   * [Conclusion](#conclusion)
   * [Next step](#next-step)
@@ -48,7 +48,7 @@ This tutorial exposes you to build a simple full stack dApp (decentralized appli
 - Basic understanding of what a smart contract is.
 - Basic knowledge on Solidity and its concepts. you can click [here](https://dacade.org/communities/ethereum/courses/sol-101/learning-modules/dcc5e8e2-bc22-49a6-ace7-23ec7fcc81d5) to learn
 - Basic knowledge of HTML and Javascript.
-- Basic understanding on the command line.
+- Basic understanding of the [command line](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line).
 
 ## Requirements: 
 - Access to a computer with an internet connection and a chrome web browser.
@@ -238,8 +238,8 @@ The function includes parameter names and its type. We use the underscore in the
 Next, we use the `require` method to ensure that all fields that the user will fill when listing a seed in the front end should not be empty. 
 
 The `require` method takes two parameters: 
-  - The condition 
-  - The error message 
+  1. The condition 
+  2. The error message 
 
 Next, we associate the key `listedSeedLength` with a new `SeedInformaition` structure in the `listedSeeds` mapping.
 
@@ -303,11 +303,11 @@ The `buySeed` function, which is `public` and `payable`, takes the _index, _owne
 
 It will have three require methods. 
 
-The first `require` method checks if the price that is being passed is greater than 0. If the condition is true it will move to the next require method. If the condition is false, it will throw an error message: `"Price should be greater than 0"`.
+1. The first `require` method checks if the price that is being passed is greater than 0. If the condition is true it will move to the next require method. If the condition is false, it will throw an error message: `"Price should be greater than 0"`.
 
-The second `require` method ensures that the buyer of that seed should not be the same as the seller. If it is false, it trows an error saying "you are already an owner of this seed".
+2. The second `require` method ensures that the buyer of that seed should not be the same as the seller. If it is false, it trows an error saying "you are already an owner of this seed".
 
-The third `require` method ensures that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored address to call the transferFrom method to transfer cUSD.
+3. The third `require` method ensures that the cUSD transaction is successful. It then uses the ERC-20 token interface and the stored address to call the transferFrom method to transfer cUSD.
 
 The first parameter is the address of the sender, accessed using the msg.sender method, the second parameter is the recipient of the transaction, which is the owner of the car at the given index, and the final parameter is the price of the seed at the given index. 
 
@@ -506,7 +506,7 @@ Going further we will be building our front end to interact with our smart contr
 
 Next, we need to open a command line interface in the folder or directory where you want to build the front end and run the code below:
 
-```sh
+```bash
 git clone https://github.com/dacadeorg/celo-boilerplate-web-dapp
 ```
 
@@ -520,7 +520,7 @@ This will create a folder called `celo-boilerplate-web-dapp`. The folder contain
 
 Next, we move to the root directory of the cloned repository on the same command line interface by running this code
 
-```sh
+```bash
 cd celo-boilerplate-web-dapp
 ``` 
 
@@ -528,13 +528,13 @@ The code changes the directory in the command line interface to the root directo
 
 To install all the dependencies we type the code below and hit enter.
 
-```sh
+```bash
 npm install
 ```
 
 Installing all dependencies might take a while. After the dependencies have been installed, we can start up the server by running the code:
 
-```sh
+```bash
 npm run dev
 ```
 
@@ -1693,7 +1693,7 @@ We use the else if to check if the button clicked contains the class name `showp
 
 Up next we will be looking at how to deploy our dApp on Github page. Before that we need to ensure that our app is working smoothly. After that you can build your dApp in the root directory command-line interface of our `celo-boilerplate-web-dapp`  with the command.
 
-```sh
+```bash
 npm run build
 ```
 
