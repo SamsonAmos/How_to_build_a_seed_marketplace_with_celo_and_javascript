@@ -177,6 +177,7 @@ struct PurchasedSeedInfo {
         string email;
     }
 ```
+
 The variables used in the above struct are:
 
 1. `purchasedFrom` - it is of type `address`. It is used to store the address of the owner of that seed.
@@ -231,6 +232,7 @@ In the next section, you will define a function to add the seed to the smart con
      listedSeedLength++;
 }
 ```
+
 The function includes parameter names and its type. We use the underscore in the name of the parameters to differentiate it from the struct value we are setting.  The function has its visibility  type set to  `public`.
 
 Next, we use the `require` method to ensure that all fields that the user will fill when listing a seed in the front end should not be empty. 
@@ -332,6 +334,7 @@ function storePurchasedSeeds(address _owner,
     seedName : _seedName, price : _price, email : _email, seedImgUrl : _seedImgUrl, timeStamp : block.timestamp }));
 }
 ``` 
+
 The function accepts parameters such as `_owner`, `_seedName`, `_seedImgUrl`, `_price`, `_email`, and their respective types. It uses the address of the `buyer` as its key and stores the information provided in an array.
 
 
@@ -343,9 +346,7 @@ function getListedSeedLength() public view returns (uint) {
     }
 ```
 
-
 Here is the full code of our smart contract:
-
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -508,6 +509,7 @@ Next, we need to open a command line interface in the folder or directory where 
 ```sh
 git clone https://github.com/dacadeorg/celo-boilerplate-web-dapp
 ```
+
 This will create a folder called `celo-boilerplate-web-dapp`. The folder contains the neccessary setup files and folders needed to build our front end and connect it with our smart contract. The three main folders you should watch out for is the: 
 `contract` folder which contains:
 - erc20.abi.json file
@@ -521,6 +523,7 @@ Next, we move to the root directory of the cloned repository on the same command
 ```sh
 cd celo-boilerplate-web-dapp
 ``` 
+
 The code changes the directory in the command line interface to the root directory for us to install the dependencies that comes with the boilerplate.
 
 To install all the dependencies we type the code below and hit enter.
@@ -528,13 +531,14 @@ To install all the dependencies we type the code below and hit enter.
 ```sh
 npm install
 ```
+
 Installing all dependencies might take a while. After the dependencies have been installed, we can start up the server by running the code:
 
 ```sh
 npm run dev
 ```
-Your project should be running here **http://localhost:3000/** and a browser window should pop up showing "hello world".
 
+Your project should be running here **http://localhost:3000/** and a browser window should pop up showing "hello world".
 
 After starting the server we need to open the celo-boilerplate-web-dapp folder which is the root folder in our IDE, in our case, the VSCode IDE.
 
@@ -550,6 +554,7 @@ To do this we need to go to the root directory of our project and find the `src`
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 ```
+
 The code above declares the document type, adds an HTML tag, creates a head element, and adds meta tags.
 
 Next, we will be importing some external stylesheets. we will use Bootstrap, a popular front-end library that allows you to create elegant responsive websites very fast. You can quickly choose from Bootstrap components like buttons or cards and customize them to your needs.
@@ -668,6 +673,7 @@ Up next we will be creating toggle buttons that will enable the users to toggle 
 </div>
 <!-- end of div -->
 ```
+
 In our code, we used Bootstrap `nav pills` class to create two buttons one with id set to "productTab" and the other set to "purchasedTab". The reason for the ids is so that we can use or target the buttons in our Javascript code, to enable us to add and remove styles on the web page.
 
 Up next we will be creating a div that will show all seeds listed on the smart contract:
@@ -693,6 +699,7 @@ Up next we will be creating a div that will show all seeds listed on the smart c
       </div>
 <!-- End of container -->
 ``` 
+
 The main tag contains two ids one set to "marketplace" which will be used later on in our Javascript code to target and render the seeds listed on the blockchain. While the other is set to "purchasedProduct" which we would also use later in our Javascript code to render seeds that are being purchased by the user.
 
 Up next is the creation of our first modal. This modal is used to show the full details of a particular seed when a user clicks the `view More Details` button of a listed seed. The `modal-body` has an id of `modalHeader` the id is what we will use to render the template that will be coming from our Javascript file. Below is the code:
@@ -725,6 +732,7 @@ Up next is the creation of our first modal. This modal is used to show the full 
           </div>
 <!-- end of modal -->
 ```
+
 Up next is another modal that will be use to add or list a seed to the smart contract.
 
 ```html
@@ -824,7 +832,6 @@ Up next is another modal that will be use to add or list a seed to the smart con
 <!-- end of modal -->
 
 ```
-
 
 Inside the modals are HTML forms, a `close` and a `submit` buttons. The form will be used to fill in the necessary information needed to list a seed in our smart contract, while the submit button will interact with our smart contract to submit the details of the form. The close button closes the modal.
 
@@ -1113,6 +1120,7 @@ Here is the full code for the HTML part of our tutorial:
   </body>
 </html>
 ```
+
 ## Reading and Writing on Our Smart Contract
 Before going into the `main.js` file,  we need to be able to read and write from our smart contract in our Javascript file, and to be able to do that we need to go to `Remix IDE` where we already wrote our smart contract to compile it and deploy on the Celo Alfajores network.
 
@@ -1135,12 +1143,11 @@ import erc20Abi from "../contract/erc20.abi.json"
 const ERC20_DECIMALS = 18
 const MPContractAddress = "0x93C2eFb0Bc6d5f09D37af265B9B78c95e7dC69E4" // deployed smart contract address
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1" //Erc20 contract address
-
 ```
+
 In the above code we imported Web from web3. web3.js is a  popular collection of libraries also used for ethereum, that allows you to get access to a web3 object and interact with node's JSON RPC API .
 
 Then we import `newKitFromWeb3` from the "@celo/contractkit". The contractkit library enables us  to interact with the celo blockchain.
-
 
 In order to interact with our smart contract that is deployed in bytecode, you need an interface, the ABI (Application Binary Interface), so that the contractKit can understand the bytecode. The ABI allows you to call functions and read data [Learn more about the ABI](https://docs.soliditylang.org/en/develop/abi-spec.html).
 
@@ -1165,6 +1172,7 @@ let kit //contractkit
 let contract // contract variable
 let listedSeeds = [] // array of listed seeds
 ```
+
 The `kit` variable is used to store the address of a user that is connected with his/her Celo wallet. Later on, we will take a look at how it works.
 
 The `contract` variable stores an instance of the marketplace contract once a user connects their Celo wallet, so you can interact with it.
@@ -1226,6 +1234,7 @@ async function approve(_price) {
   return result
 }
 ```
+
 In the `approve` function, we create a cUSD contract instance with the ABI and the contract address, cUSDContract, which enable us to call the cUSD contract method `approve`. You need to specify both the contract address that will be allowed to make transactions and the amount that it will be allowed to spend, i.e., the price of the seed.
 
 Again, you also need to specify the sender of the transaction. In this case, it's the address stored in `kit.defaultAccount`. It returns the result for error handling if there is one.
@@ -1242,6 +1251,7 @@ const getBalance = async function () {
 }
   };
 ```
+
 We start by calling the `kit.getTotalBalance(address)` method, passing in the user's address. This method returns the user's balance in the form of an object that contains the amounts of CELO and cUSD tokens. The returned balance is then stored in the `totalBalance` variable.
 
 The next step is to extract the CELO and cUSD balance from the "totalBalance" object by using the `.CELO` and `.cUSD` properties respectively. Then it's shifted the value by -ERC20_DECIMALS which is a way to represent the balance in terms of smaller units in our case 18 decimal places, and then it's converting the value to fixed 2 decimal points. These values are stored in the `celoBalance` and `USDBalance` variables.
@@ -1387,6 +1397,7 @@ window.addEventListener("load", async () => {
   notificationOff()
   });
 ```
+
 The async function calls the notification function with a loading message, displays the user's balance, renders all seeds so the user can see them, and disables the notification div again once the dApp is loaded.
 
 Next would be collecting the values of the forms we created in our modal. Firstly we get the id of our modal button, then we add an event listener to check when the button is being clicked. Next, we store the values in an array called params and we use the try block to call the `contract.methods.listedSeed()` with the params passed inside it, then we use the catch block to handle any errors that might occur. If all is successful, we call the notification, notificationOff, and getListedSeeds functions. Below is the code:
@@ -1480,6 +1491,7 @@ document.getElementById("modalHeader").innerHTML = `
 
   `}
 ```
+
 Inside the modal, we will create a div with the class `card` and insert the image tag with some paragraphs. the image tag contains the image of the seed while the paragraph contains the details of the seed according to their order when fetched from the smart contract. Inside the modal is a buy button that will enable us to purchase the seed. We will implement the functionality later.
 
 Still in our query selector is the catch block that handles any error that may occur when interacting with our smart contract.
@@ -1528,6 +1540,7 @@ The next line pop  a notification to tell the user that their request is being p
 
 
 After payment is being approved we are going to display another notification to let the user know that we are waiting for their confirmation. Then we are going to use a try block to call the `buySeed` function of our smart contract.
+
 ```js
 notification(`⌛ Awaiting payment for "${listedSeeds[index].seedName}"...`)
       try {
@@ -1705,5 +1718,6 @@ The source code of this project is hosted [here](https://github.com/SamsonAmos/A
 - [Live Demo](https://samsonamos.github.io/AgroCelo1/)
 
 ## About the Author
+
 Samson Amos is a web2 and a web3 developer who loves a coding as well as teaching others. You can reach me out on Twitter [@SamsonAmoz](https://twitter.com/SamsonAmoz)
 
