@@ -12,9 +12,9 @@
   * [Developing Our Smart Contract](#developing-our-smart-contract)
   * [Deploying our smart contract](#deploying-our-smart-contract)
   * [Developing the frontend](#developing-the-frontend)
-    + [Editing the `index.html` file](#editing-the-`index.html`-file)
-    + [Editing the `marketplace.sol` and the `marketplace.abi.json` file](#editing-the-`marketplace.sol`-and-the-`marketplace.abi.json`-file)
-    + [Editing the `main.js` file](#editing-the-`main.js`-file)
+    + [Editing the index.html file](#editing-the-indexhtml-file)
+    + [Editing the marketplace.sol and the marketplace.abi.json file](#editing-the-marketplacesol-and-the-marketplaceabijson-file)
+    + [Editing the main.js file](#editing-the-mainjs-file)
   * [Deployment on Github pages](#deployment-on-github-pages)
   * [Conclusion](#conclusion)
   * [Next step](#next-step)
@@ -545,7 +545,7 @@ Your project should be running here **http://localhost:3000/** and a browser win
 
 After starting the server we need to open the celo-boilerplate-web-dapp folder which is the root folder in our IDE, in our case, the VSCode IDE.
 
-### Editing the `index.html` file:
+### Editing the index.html file:
 
 In the next step of the tutorial, you will begin building the foundation of your decentralized application (dApp) using HTML. You can get the `index.html` file at the public folder.
 
