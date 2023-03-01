@@ -1,48 +1,49 @@
----
-title: How to Build a seed Marketplace dapp Using Celo, Solidity and Javascript.
-description: Learn how to build a seed marketplace on the blockchain using Celo, Solidity and Javascript 
-authors:
-- name: Samson Amos 
-  title: Web2 and Web3 Developer, 
-  github_url: https://github.com/SamsonAmos
-tags: [celo, solidity, javascript]
-hide_table_of_contents: true
-slug: /tutorials/how-to-build-a-seed-marketplace-dapp-using-Celo-Solidity-and-Javascript
----
+# How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
 
 ## Table of Contents
 
   * [Introduction](#introduction)
+    + [What is a Blockchain?](#what-is-a-blockchain?)
+    + [What is Celo?](#what-is-celo?)
+    + [What are Smart Contracts?](#what-are-smart-contracts?)
   * [Prerequisites](#prerequisites)
   * [Requirements](#requirements)
   * [Let us Begin](#let-us-begin)
-  * [Smart Contract Development](#smart-contract-development)
-  * [Contract Deployment](#contract-deployment)
-  * [Frontend Development](#frontend-development)
-    + [The HTML part of the Dapp](#the-html-part-of-the-dapp)
-    + [Reading and Writing on Our Smart Contract](#reading-and-writing-on-our-smart-contract)
-    + [main.js](#mainjs)
+  * [Developing Our Smart Contract](#developing-our-smart-contract)
+  * [Deploying our smart contract](#deploying-our-smart-contract)
+  * [Developing the frontend](#developing-the-frontend)
+    + [Editing the `index.html` file](#editing-the-`index.html`-file)
+    + [Editing the `marketplace.sol` and the `marketplace.abi.json` file](#editing-the-`marketplace.sol`-and-the-`marketplace.abi.json`-file)
+    + [Editing the `main.js` file](#editing-the-`main.js`-file)
   * [Deployment on Github pages](#deployment-on-github-pages)
   * [Conclusion](#conclusion)
   * [Next step](#next-step)
   * [About the Author](#about-the-author)
 
-# How to Build a Seed Marketplace dapp using Celo, Solidity and Javascript
-
-Before we proceed, the purpose of this tutorial is to know how to build and deploy a simple fullstack dApp (decentralized application) on the Celo blockchain using Solidity (SmartContract) and Javascript (Frontend).
-
-here is a live demo of what will be building https://samsonamos.github.io/AgroCelo1/
-
 ## Introduction:
-A blockchain or cryptographic network is a broad term used to describe a database maintained by a distributed set of computers that do not share a trust relationship or common ownership. This arrangement is referred to as decentralized. The content of a blockchain's database, or ledger, is authenticated using cryptographic techniques, preventing its contents from being added to, edited or removed except according to a protocol operated by the network as a whole.
 
-The Celo blockchain enables fast, secure, and low-cost financial transactions. It is built on top of the Ethereum Virtual Machine (EVM), which is a standardized environment for running smart contracts (self-executing code that can be used to facilitate, verify, and enforce the negotiation or performance of a contract). 
-One of the main features of Celo is its use of proof-of-stake (PoS) consensus, which means that the network is secured by a group of "validators" who stake (or pledge) a certain amount of the platform's native cryptocurrency  in order to participate in the validation of transactions. 
+Before we proceed here is a preview and a live demo link of what will be building:
 
-Ethereum applications are built using smart contracts. Smart contracts are programs written in languages like Solidity that produce bytecode for the Ethereum Virtual Machine or EVM, a runtime environment. Programs encoded in smart contracts receive messages and manipulate the blockchain ledger and are termed on-chain.
+[demo](https://samsonamos.github.io/AgroCelo1/)
+
+Below is a preview of what we are going to build.
+
+![image](images/1.PNG)
+
+### What is a Blockchain?
+
+A blockchain is a distributed database or ledger that is shared among the nodes of a computer network. As a database, a blockchain stores information electronically in digital format. Blockchains are best known for their crucial role in maintaining a secure and decentralized record of transactions. The innovation with a blockchain is that it guarantees the fidelity and security of a record of data and generates trust without the need for a trusted third party.
+
+### What is Celo?
+
+Celo is a blockchain protocol that aims to facilitate a global payments infrastructure by leveraging phone numbers. The protocol uses phone numbers as a proxy for public keys. It also uses it for issuing native tokens, thereby making the financial activity accessible to anyone globally. Celo also allows the development of smart contracts and decentralised applications on its blockchain. Users can use this feature and contribute to initiatives like Universal Basic Income and other social causes.
+
+### What are Smart Contracts?
+
+Smart contracts are simply programs stored on a blockchain that run when predetermined conditions are met. They typically are used to automate the execution of an agreement so that all participants can be immediately certain of the outcome, without any intermediary’s involvement or time loss. They can also automate a workflow, triggering the next action when conditions are met.
 
 ## Prerequisites:
-This tutorial exposes you to build a simple full stack dApp (decentralized application) on the Celo network using Solidity (SmartContract) and Javascript (Frontend). In order for us to move further, you will need to have a basic understanding of the following:
+In order for us to move further, you will need to have a basic understanding of the following:
 
 - Basic understanding of blockchain concepts. You can click [here](https://dacade.org/communities/blockchain/courses/intro-to-blockchain) to learn.
 - Basic understanding of what a smart contract is.
@@ -51,6 +52,7 @@ This tutorial exposes you to build a simple full stack dApp (decentralized appli
 - Basic understanding of the [command line](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line).
 
 ## Requirements: 
+
 - Access to a computer with an internet connection and a chrome web browser.
 - **[NodeJS](https://nodejs.org/en/download)** from V12.or higher
 - A code editor or text editor. **[VSCode](https://code.visualstudio.com/download)** is recommended
@@ -61,33 +63,26 @@ This tutorial exposes you to build a simple full stack dApp (decentralized appli
 
 ## Let us Begin
 
-Below is a preview of what we are going to build.
-
-![image](images/1.PNG)
-
-## Smart Contract Development
+## Developing Our Smart Contract:
 
 Let's begin by building our first smart contract on Solidity using the Remix IDE. The Remix IDE is a web based IDE that allows developers to write, test and deploy smart contracts on the blockchain. But for this tutorial we will be deploying our smart contract on the Celo network or blockchain.  
 
 You can learn how the remix works by following the steps below:
 
-  - Go to https://remix.ethereum.org/.
-  - Click on the featured plugin, “LEARNETH”.
-  - Click on Remix Basics.
-  - Start the tutorial and finish all lessons of Remix Basics.
+  1. Go to https://remix.ethereum.org/.
+  2. Click on the featured plugin, “LEARNETH”.
+  3. Click on Remix Basics.
+  4. Start the tutorial and finish all lessons of Remix Basics.
 
-Here is a preview of how to do it.
-![gif](https://cdn-celo-101-dacade.netlify.app/celo_2_1_remix_basics.gif)
 
-Considering you have understood how the Remix IDE works, let's build our smart contract by create a Soliidity file: called AgroCelo.sol
+Considering you have understood how the Remix IDE works, let's build our smart contract by create a Soliidity file: called `AgroCelo.sol`
 
   - Go to https://remix.ethereum.org/, 
   - Create a new file, 
-  - Name it AgroCelo.sol. You can give it any name you want but let's stick to AgroCelo.sol. 
-  - Open that file. The .sol extension indicates that it is a Solidity file.
+  - Name it `AgroCelo.sol`. You can give it any name you want but let's stick to `AgroCelo.sol`.  The `.sol` extension indicates that it is a Solidity file.
 
 
-On the first line of your AgroCelo.sol let's include a statement that specifies the license under which the code is being released.
+On the first line of your `AgroCelo.sol` let's include a statement that specifies the license under which the code is being released.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -136,7 +131,7 @@ In the next line, you define a state variable named `listedSeedLength`, this is 
 
 We also define the visibility of our variable as `internal` which means it cannot be accessed from external smart contracts or addresses and can only be modified within the smart contract. ([Learn more about visiblity](https://docs.soliditylang.org/en/latest/contracts.html#visibility-and-getters))
 
-Next, To interact with the cUSD ERC-20 token on the Celo alfajores test network, you need to know the address of the token.
+Next, To interact with the cUSD `ERC-20` token on the Celo alfajores test network, you need to know the address of the token.
 
 After defining the single variables used in the contract, we need  to create a `model` for our seed called `SeedInformation` which you can give your own name if you wish. This model will take the basic details about a seed to be listed on the blockchain.
 
@@ -475,36 +470,42 @@ function storePurchasedSeeds(address _owner,
  
 ```
 
-## Contract Deployment
+## Deploying our smart contract:
 
-To deploy the contract, we would need to:
-1. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from the Google Chrome store.
+To deploy the smart contract, we would need to take the following steps:
 
+1. Compile the code by pressing `ctrl + s`
 
-2. Create a wallet and ensure you store your key phrase in a very safe place when creating your wallet to avoid permanently losing your funds below is a break down on how to create a wallet:
-
-![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_create_wallet.gif)
+2. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from the Google Chrome store.
 
 
-3. Get the Celo token for the Alfajores testnet [here](https://celo.org/developers/faucet) : below is a break down of how to do it.
+3. Create a wallet and ensure you store your key phrase in a very safe place when creating your wallet to avoid permanently losing your funds. 
+
+
+4. Get the Celo token for the Alfajores testnet [here](https://celo.org/developers/faucet) : below is a break down of how to do it.
 
 ![image](images/celo_get_token_from_faucet.gif)
 
 
-4. Install the Celo Remix plugin and deploy your contract. Below is the breakdown. 
+5. Install the Celo plugin on your Remix IDE by clicking on the Plugin manager, activate Cel0, then you click on the Celo Icon.
 
-![gif](https://raw.githubusercontent.com/dacadeorg/celo-development-101/main/content/gifs/celo_install_remix_plugin_and_deploy_contract.gif)
+6. On the sidebar, click on the connect button. Your Celo wallet should pop up asking for your approval. 
 
-In the gif above, replace `marketplace.sol` with `AgroCelo.sol`
-
-Congratulations! you have just deployed your first smart contract on the Celo blockchain.
+7. After connecting your wallet, click on the deploy button to deploy the contract. Ensure you take note of the deploy address because we will need it later. 
 
 
-## Frontend Development
+NB:Take note of the ABI as shown below:
 
-Going further we will be building our front end to interact with our smart contract that is being deployed on the Celo blockchain. You need to make sure that you have installed Node.js 10 or higher version.
+![image](images/3.png)
 
-Next, we need to open a command line interface in the folder or directory where you want to build the front end and run the code below:
+`and that's it! you have just deployed your first smart contract on the Celo blockchain`.
+
+
+## Developing the frontend:
+
+Going further we will be using a boilerplate from dacade in building the front end to interact with our smart contract that is being deployed on the Celo blockchain by following the steps below: 
+
+1. Open a command line interface in the folder or directory where you want to build the front end and run the code below:
 
 ```bash
 git clone https://github.com/dacadeorg/celo-boilerplate-web-dapp
@@ -518,7 +519,7 @@ This will create a folder called `celo-boilerplate-web-dapp`. The folder contain
 
 `Public` folder which contains the `index.html` file and the `src` folder which contains the `main.js` file.
 
-Next, we move to the root directory of the cloned repository on the same command line interface by running this code
+2. Move to the root directory of the cloned repository on the same command line interface by running the code below:
 
 ```bash
 cd celo-boilerplate-web-dapp
@@ -526,13 +527,15 @@ cd celo-boilerplate-web-dapp
 
 The code changes the directory in the command line interface to the root directory for us to install the dependencies that comes with the boilerplate.
 
-To install all the dependencies we type the code below and hit enter.
+3. install all the dependencies by running the code below:
 
 ```bash
 npm install
 ```
 
-Installing all dependencies might take a while. After the dependencies have been installed, we can start up the server by running the code:
+Installing all dependencies might take a while. After the dependencies have been installed. 
+
+4. Start up the server by running the code:
 
 ```bash
 npm run dev
@@ -542,9 +545,11 @@ Your project should be running here **http://localhost:3000/** and a browser win
 
 After starting the server we need to open the celo-boilerplate-web-dapp folder which is the root folder in our IDE, in our case, the VSCode IDE.
 
-## The HTML part of the Dapp
-In the next step of the tutorial, you will begin building the foundation of your decentralized application (dApp) using HTML.
-To do this we need to go to the root directory of our project and find the `src` folder,  open the folder, and click on the `index.html` file in our IDE. Clear all that is written and type this:
+### Editing the `index.html` file:
+
+In the next step of the tutorial, you will begin building the foundation of your decentralized application (dApp) using HTML. You can get the `index.html` file at the public folder.
+
+Next we will be defining our HTML document tags and `meta` tags.
 
 ```html
 <!DOCTYPE html>
@@ -1121,17 +1126,27 @@ Here is the full code for the HTML part of our tutorial:
 </html>
 ```
 
-## Reading and Writing on Our Smart Contract
-Before going into the `main.js` file,  we need to be able to read and write from our smart contract in our Javascript file, and to be able to do that we need to go to `Remix IDE` where we already wrote our smart contract to compile it and deploy on the Celo Alfajores network.
+### Editing the `marketplace.sol` and the `marketplace.abi.json` file:
+
+Before going into the `main.js` file,  we need to be able to read and write from our smart contract in our Javascript file by getting the bytecode, and to be able to do that we need to go to `Remix IDE` where we already wrote our smart contract to compile it and deploy on the Celo Alfajores network.
+
+You can get the `marketplace.sol` and the `marketplace.abi.json` file in the contract folder of our boilerplate. 
 
 To interact with our smart contract that is deployed in bytecode, we need an interface, the ABI (Application Binary Interface), so that the `contractKit` in our `main.js` file can understand the bytecode. The ABI allows you to call functions and read data [Learn more about the ABI](https://docs.soliditylang.org/en/develop/abi-spec.html).
 
-When you compile your contract in Remix, Remix also creates the ABI in the form of a JSON object that contains actions that allow us to interact with our smart contract. Click on the ABI icon to copy the Abi and save it into the `marketplace.abi.json` file of the contracts folder in our project's directory
+Follow the steps below to edit the files:
 
-After that, you need to copy the smart contract code and paste it into your `marketplace.sol` file. When all this is done we can now move to our `main.js` file but take note of the address to which your contract is being deployed because we will need it in our `main.js` file to interact with the smart contract.
+1. Compile your smart contract on the Remix IDE and ensure it has no error message.
 
-## main.js
-The `main.js file` is the file that enables us to interact with our smart contract from our front end. At the beginning of the `main.js` file, the necessary libraries and files are imported.
+2. Copy the smart contract code and paste it in the `marketplace.sol` file of our boilerplate.
+
+3. Copy the ABI code from the Remix IDE and paste it into the `marketplace.abi.json` file.
+
+![image](images/3.png)
+
+### Editing the `main.js` file:
+
+The `main.js file` is the file that enables us to interact with our smart contract from our front end. You can get the `main.js` file at the `src` folder. At the beginning of the `main.js` file, the necessary libraries and files needs to be imported.
 
 ```js
 import Web3 from "web3"
@@ -1398,7 +1413,7 @@ window.addEventListener("load", async () => {
   });
 ```
 
-The async function calls the notification function with a loading message, displays the user's balance, renders all seeds so the user can see them, and disables the notification div again once the dApp is loaded.
+The `async` function calls the notification function with a loading message, displays the user's balance, renders all seeds so the user can see them, and disables the notification div again once the dApp is loaded.
 
 Next would be collecting the values of the forms we created in our modal. Firstly we get the id of our modal button, then we add an event listener to check when the button is being clicked. Next, we store the values in an array called params and we use the try block to call the `contract.methods.listedSeed()` with the params passed inside it, then we use the catch block to handle any errors that might occur. If all is successful, we call the notification, notificationOff, and getListedSeeds functions. Below is the code:
 
@@ -1705,19 +1720,19 @@ After building it successfully, you should have an HTML and JS file inside the d
 - Create a custom domain name, and click on save. Your domain name should appear at the top of the browser.
 - Click on "visit site". It might take a minute or two before the site will be ready.
 
-## Conclusion
+## Conclusion:
 
 Congrats 🎉, you were able to build and deploy your full-stack dApp using Solidity and Javascript on the Celo blockchain.
 
-## Next step
+## Next step:
 
-You can challenge yourself by adding more functions to your smart contract and implementing them using Javascript. You can also look at various Celo smart contracts and see if you can build a dApp using Javascript.
+You can challenge yourself by adding more functionalities to the smart contract and implement them using Javascript. 
 
 The source code of this project is hosted [here](https://github.com/SamsonAmos/AgroCelo1). You can use it as a source of reference to edit yours.
 
 - [Live Demo](https://samsonamos.github.io/AgroCelo1/)
 
-## About the Author
+## About the Author:
 
 Samson Amos is a web2 and a web3 developer who loves a coding as well as teaching others. You can reach me out on Twitter [@SamsonAmoz](https://twitter.com/SamsonAmoz)
 
