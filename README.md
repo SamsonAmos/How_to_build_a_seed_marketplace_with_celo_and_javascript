@@ -12,7 +12,7 @@
   * [Developing Our Smart Contract](#developing-our-smart-contract)
   * [Deploying our smart contract](#deploying-our-smart-contract)
   * [Developing the frontend](#developing-the-frontend)
-    + [Editing the index.html file](#editing-the-index.html-file)
+    + [Editing the index.html file](#editing-the-indexhtml-file)
     + [Editing the `marketplace.sol` and the `marketplace.abi.json` file](#editing-the-`marketplace.sol`-and-the-`marketplace.abi.json`-file)
     + [Editing the `main.js` file](#editing-the-`main.js`-file)
   * [Deployment on Github pages](#deployment-on-github-pages)
